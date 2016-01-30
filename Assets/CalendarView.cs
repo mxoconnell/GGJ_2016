@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
+
+//Buttons have OnClick methods tied via the editor to public methods
 
 public class CalendarView : MonoBehaviour, IView
 {
@@ -19,6 +22,9 @@ public class CalendarView : MonoBehaviour, IView
 
     [SerializeField]
     Animator Controller;
+
+    [SerializeField]
+    Image[] CalendarBookedGraphics;
 
     // Use this for initialization
     void Start () {

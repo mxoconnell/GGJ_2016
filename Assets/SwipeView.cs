@@ -2,6 +2,8 @@
 using System.Collections;
 using System;
 
+//Buttons have OnClick methods tied via the editor to public methods
+
 public class SwipeView : MonoBehaviour, IView  {
 
     public void ChangeView(IView nextView)

@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 
+//Buttons have OnClick methods tied via the editor to public methods
+
 public class BattleView : MonoBehaviour, IView
 {
     public void ChangeView(IView nextView)
