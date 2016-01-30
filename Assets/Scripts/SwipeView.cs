@@ -22,6 +22,12 @@ public class SwipeView : MonoBehaviour, IView  {
     [SerializeField]
     Animator Controller;
 
+    [SerializeField]
+    RectTransform[] SwipeScreens;
+
+    [SerializeField]
+    RectTransform ForegroundSwipeScreen;
+
     // Use this for initialization
     void Start () {
 	
@@ -31,4 +37,11 @@ public class SwipeView : MonoBehaviour, IView  {
 	void Update () {
 	
 	}
+
+    //assigned via inspector.
+    public void Swipe(bool SwipeLeft)
+    {
+        //Call controller event (True for left, false for right)
+        //Wait then Swap foreground for BG
+    }
 }
