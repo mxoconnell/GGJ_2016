@@ -52,9 +52,9 @@ public class SwipeView : MonoBehaviour, IView  {
     }
 
     //assigned via inspector.
-    public void Swipe(float SliderValue)
+    public void Swipe(Vector2 SliderValue)
     {
-        LastSliderValue = SliderValue;
+        LastSliderValue = SliderValue.x;
 
     }
 

@@ -21,10 +21,10 @@ public class Controller : MonoBehaviour {
 
     void Start()
     {
-        SwipeView.DidSwipe += SetControllerParam;
+        SwipeView.DidSwipe += Swipe;
     }
 
-    void SetControllerParam(float amount)
+    void Swipe(float amount)
     {
         SwipeA.SetFloat("Swipe", amount);
     }
