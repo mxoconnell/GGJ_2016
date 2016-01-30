@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Controller : MonoBehaviour {
 
+    /// <summary>
+    /// Events and nonsense.
+    /// </summary>
+
     public SwipeView SwipeV;
     public Animator SwipeA;
 
@@ -12,11 +16,6 @@ public class Controller : MonoBehaviour {
     {
 
     }
-
-    public void GetCalendarInfo() { }
-    public void GetSwipeInfo() { }
-    public void GetBattleInfo() { }
-
     //Event boilerplate
     //On Event, set animator parameters
 
@@ -29,4 +28,12 @@ public class Controller : MonoBehaviour {
     {
         SwipeA.SetFloat("Swipe", amount);
     }
+
+    /// <summary>
+    /// Getters
+    /// </summary>
+
+    public void GetCalendarInfo() { }
+    public void GetSwipeInfo() { }
+    public void GetBattleInfo() { }
 }
