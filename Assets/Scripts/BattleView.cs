@@ -5,31 +5,64 @@ using UnityEngine.UI;
 
 //Buttons have OnClick methods tied via the editor to public methods
 
-public class BattleView : MonoBehaviour, IView
+public class BattleView : MonoBehaviour
 {
-    public void ChangeView(IView nextView)
-    {
-        throw new NotImplementedException();
-    }
-
-    public RectTransform GetRoot()
-    {
-        return Root;
-    }
+    [SerializeField]
+    RectTransform Date_DialogBox;
 
     [SerializeField]
-    RectTransform Root;
+    Text Date_Dialog;
 
     [SerializeField]
-    Animator Controller;
+    RectTransform Player_DialogBox;
+
+    [SerializeField]
+    Text Player_Dialog;
+
+    [SerializeField]
+    SerializationModel.ConversationNode CurrentNode;
 
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start() {
+        Date_DialogBox.gameObject.SetActive(false);
+        Player_DialogBox.gameObject.SetActive(false);
+    }
+
+    //Hooked up in the inspector
+    public void Option0Clicked()
+    {
+        SetNextNode();
+    }
+    public void Option1Clicked()
+    {
+        SetNextNode();
+    }
+    public void Option2Clicked()
+    {
+        SetNextNode();
+    }
+    public void Option3Clicked()
+    {
+        SetNextNode();
+    }
+
+    void SetNextNode()
+    {
+      
+    }
+
+    void SetPlayerDialog()
+    {
+
+    }
+
+    void SetDateDialog()
+    {
+
+    }
+
+    void SetPlayerOptions()
+    {
+
+    }
 }
