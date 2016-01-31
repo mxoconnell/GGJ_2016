@@ -9,17 +9,14 @@ using SerializationModel;
 
 public class BattleView : MonoBehaviour
 {
-    [SerializeField]
-    RectTransform DateDialogBox;
+	[SerializeField]
+	GameObject DateDialogBoxPrefab;
 
-    [SerializeField]
-    Text DateDialog;
+	[SerializeField]
+	GameObject PlayerDialogBoxPrefab;
 
-    [SerializeField]
-    RectTransform PlayerDialogBox;
-
-    [SerializeField]
-    Text PlayerDialog;
+	[SerializeField]
+	RectTransform MessageWindow;
 
     [SerializeField]
     Text[] PlayerDialogOptions;
@@ -33,6 +30,8 @@ public class BattleView : MonoBehaviour
     [SerializeField]
     Text FinishDialog;
 
+	private float MessageBoxTranslation = 0;
+
     // Use this for initialization
     void Start() {
 
@@ -42,11 +41,8 @@ public class BattleView : MonoBehaviour
     void BattleStart()
     {
         //initialize      
-       DateDialogBox.gameObject.SetActive(false);
-       PlayerDialogBox.gameObject.SetActive(false);
        SetPlayerOptions(GameController.GetPlayerOptions());
     }
-
 
     public static System.Action<int> OptionClicked;
     public static System.Action<int> TypingDelayDone;
@@ -67,17 +63,31 @@ public class BattleView : MonoBehaviour
         TypingDelayDone(selectionNumber);
     }
 
+	private void SetDialog(GameObject prefab, string text)
+	{
+		// Add the actual dialog object and set its content
+		GameObject newDialog = Instantiate<GameObject>(prefab);
+		newDialog.transform.SetParent(MessageWindow.transform, false);
+		newDialog.GetComponentInChildren<Text>().text = text;
+
+		// Move the dialog to the bottom of the screen
+		var newDialogTransform = newDialog.GetComponent<RectTransform>();
+		newDialogTransform.anchoredPosition += Vector2.down * MessageBoxTranslation;
+		MessageBoxTranslation += newDialogTransform.rect.height;
+
+		// Increase the message window size and position
+		MessageWindow.sizeDelta = new Vector2(MessageWindow.sizeDelta.x, MessageBoxTranslation);
+		MessageWindow.localPosition = new Vector3(0, MessageBoxTranslation, 0);
+	}
+
     public void SetPlayerDialog(string newText)
     {
-        PlayerDialogBox.gameObject.SetActive(true);
-        PlayerDialog.text = newText;
+		SetDialog(PlayerDialogBoxPrefab, newText);
     }
 
     public void SetDateDialog(string bodyText)
     {
-        DateDialogBox.gameObject.SetActive(true);
-        DateDialog.text = bodyText;
-        SetPlayerOptions(GameController.GetPlayerOptions());
+		SetDialog(DateDialogBoxPrefab, bodyText);
     }
 
     public void SetPlayerOptions(List<ConversationOption> options)
