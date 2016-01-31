@@ -18,6 +18,9 @@ public class BattleView : MonoBehaviour
 	[SerializeField]
 	RectTransform MessageWindow;
 
+	[SerializeField]
+	float MessageSpacing = 10f;
+
     [SerializeField]
     Text[] PlayerDialogOptions;
 
@@ -73,7 +76,7 @@ public class BattleView : MonoBehaviour
 		// Move the dialog to the bottom of the screen
 		var newDialogTransform = newDialog.GetComponent<RectTransform>();
 		newDialogTransform.anchoredPosition += Vector2.down * MessageBoxTranslation;
-		MessageBoxTranslation += newDialogTransform.rect.height;
+		MessageBoxTranslation += newDialogTransform.rect.height + MessageSpacing;
 
 		// Increase the message window size and position
 		MessageWindow.sizeDelta = new Vector2(MessageWindow.sizeDelta.x, MessageBoxTranslation);
