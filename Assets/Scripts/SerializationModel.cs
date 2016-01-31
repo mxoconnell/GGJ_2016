@@ -38,12 +38,19 @@ namespace SerializationModel {
 		public List<ConversationNode> ConversationTree { get; set; }
     }
 
-    public class NPC
+
+    public class NPCSprite
     {
-        public string VariantName { get; set; }
-        public string ColorName { get; set; }
-        public int Age { get; set; }
-        public string PersonalityType { get; set; }
-        public List<string> NPCName { get;set;}
+        public string SpriteName;
+        public List<npcSpriteVariant> variants;
     }
+
+    public class npcSpriteVariant
+    {
+        public string color { get; set; }
+        public int age { get; set; }
+        public string pType { get; set; }
+        public List<string> npcNames { get; set; }
+    }
+
 }

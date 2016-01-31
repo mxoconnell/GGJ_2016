@@ -24,9 +24,6 @@ public class Model : MonoBehaviour {
 
     public static System.Action<string> OnBattleFinish;
 
-    //NPC definitions
-    List<NPC> NPCList;
-
     // Use this for initialization
     void Awake()
     { 
@@ -38,25 +35,6 @@ public class Model : MonoBehaviour {
 
     #region SwipeView
 
-    //initialize definitions list
-    List<NPC> InitializeNPCList()
-    {
-        NPCReader = new StringReader(Resources.Load<TextAsset>("NPCDefinitions").text);
-        CamelCaseDeserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
-        NPCList = new List<NPC>();
-
-        NPCList = CamelCaseDeserializer.Deserialize <List<NPC>>(NPCReader);
-
-        return NPCList;
-    }
-     
-
-    NPC GetRandomNPC()
-    {
-
-        return new NPC();
-    }
-    
     #endregion
 
     #region BattleScreen
