@@ -66,16 +66,20 @@ public class BattleView : MonoBehaviour
         TypingDelayDone(selectionNumber);
     }
 
-	private void SetDialog(GameObject prefab, string text)
+	private IEnumerator SetDialog(GameObject prefab, string text)
 	{
 		// Add the actual dialog object and set its content
 		GameObject newDialog = Instantiate<GameObject>(prefab);
-		newDialog.transform.SetParent(MessageWindow.transform, false);
 		newDialog.GetComponentInChildren<Text>().text = text;
+		newDialog.transform.SetParent(MessageWindow.transform, false);
+
+		// Need to delay a bit for the layout to update the rect transform to update
+		yield return new WaitForSeconds(0.01f);
 
 		// Move the dialog to the bottom of the screen
 		var newDialogTransform = newDialog.GetComponent<RectTransform>();
-		newDialogTransform.anchoredPosition += Vector2.down * MessageBoxTranslation;
+		Debug.Log(newDialogTransform.rect.height);
+		newDialogTransform.anchoredPosition += Vector2.down * (MessageBoxTranslation + newDialogTransform.rect.height/2);
 		MessageBoxTranslation += newDialogTransform.rect.height + MessageSpacing;
 
 		// Increase the message window size and position
@@ -85,12 +89,12 @@ public class BattleView : MonoBehaviour
 
     public void SetPlayerDialog(string newText)
     {
-		SetDialog(PlayerDialogBoxPrefab, newText);
+		StartCoroutine(SetDialog(PlayerDialogBoxPrefab, newText));
     }
 
     public void SetDateDialog(string bodyText)
     {
-		SetDialog(DateDialogBoxPrefab, bodyText);
+		StartCoroutine(SetDialog(DateDialogBoxPrefab, bodyText));
     }
 
     public void SetPlayerOptions(List<ConversationOption> options)
