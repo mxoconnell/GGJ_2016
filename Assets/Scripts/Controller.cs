@@ -2,25 +2,16 @@
 using System.Collections;
 
 public class Controller : MonoBehaviour {
-
-    /// <summary>
-    /// Events and nonsense.
-    /// </summary>
-
-    public SwipeView SwipeV;
-
-    public IView CurrentView;
-
+    
     public void ChangeToView(IView nextView)
     {
 
     }
-    //Event boilerplate
-    //On Event, set animator parameters
 
     void Start()
     {
         SwipeView.DidSwipe += Swipe;
+        BattleView.OptionClicked += OnPlayerSelectOption;
     }
 
     void Swipe(float amount)
@@ -35,4 +26,14 @@ public class Controller : MonoBehaviour {
     public void GetCalendarInfo() { }
     public void GetSwipeInfo() { }
     public void GetBattleInfo() { }
+
+    void OnBattleStart()
+    {
+        
+    }
+    
+    void OnPlayerSelectOption(int optionNumber)
+    {
+        //do something with the game logic
+    }
 }
