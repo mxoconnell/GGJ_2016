@@ -33,11 +33,6 @@ public class Controller : MonoBehaviour {
 
     }
 
-    NPC GetRandomNPC()
-    {
-        return new NPC();
-    }
-
 
     #endregion
     #region BattleScreen
