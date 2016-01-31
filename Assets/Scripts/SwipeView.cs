@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 //Buttons have OnClick methods tied via the editor to public methods
 
@@ -8,6 +9,13 @@ public class SwipeView : MonoBehaviour, IView
 {
     public GameObject topCard;
     public GameObject bottomCard;
+
+    [SerializeField]
+    Image PortraitA, PortraitB;
+    [SerializeField]
+    Text NPCNameA, NPCNameB;
+    [SerializeField]
+    Text NPCAgeA, NPCAgeB;
 
     Vector3 topCardOriginalPosition;
     bool canSwipe = true; //false when we are swiping
@@ -31,6 +39,9 @@ public class SwipeView : MonoBehaviour, IView
     }
 
     float LastSliderValue = 0.0f;
+
+	[SerializeField]
+	Controller GameController;
 
     [SerializeField]
     RectTransform Root;
@@ -92,8 +103,8 @@ public class SwipeView : MonoBehaviour, IView
                 //Now the top card and bottom card switch roles.
                 var placeholder = topCard;
                 topCard = bottomCard;
-                bottomCard = topCard;
-
+                bottomCard = placeholder;
+                FillNextPortrait();
             }
         }
     }
@@ -113,4 +124,14 @@ public class SwipeView : MonoBehaviour, IView
 
         }
     }
+
+    //Load in NPC Data
+
+    public void FillNextPortrait()
+    {
+        NPC newView = bottomCard.GetComponentInChildren<Image>().gameObject.AddComponent<NPC>();
+       // bottomCard.GetComponentInChildren<NPC>().InitializeNewNPC();
+        
+    }
+    
 }

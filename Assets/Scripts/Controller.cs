@@ -41,6 +41,11 @@ public class Controller : MonoBehaviour {
     {
       return GameModel.GetPlayerOptions();
     }
+
+	public List<NpcSprite> GetNpcSprites()
+	{
+		return GameModel.GetNpcSprites();
+	}
     
     void OnPlayerSelectOption(int optionNumber)
     {
