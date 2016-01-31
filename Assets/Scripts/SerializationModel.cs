@@ -14,34 +14,28 @@ namespace SerializationModel {
 
     public class ConversationOption
     {
-        public string name { get; set; }
-        public string playerText { get; set; }
-   
-        public Response response { get; set; }   
+        public string Name { get; set; }
+        public List<string> PlayerText { get; set; }
+        public Response Response { get; set; }   
     }
 
     public class Response
     {
-        public string npcText { get; set; }
-        public float value { get; set; }
-        public string next { get; set; }
+        public List<string> NpcText { get; set; }
+        public string Value { get; set; }
+        public string Next { get; set; }
     }
 
     public class ConversationNode
     {
-        public ConversationOption[] consequentOptions { get; set; }
-        public string tag { get; set; } //reference to next node in tree
+        public List<ConversationOption> Options { get; set; }
+        public string Tag { get; set; } //reference to next node in tree
     }
 
-    public class ConversationTree
+    public class NpcData
     {
-        public ConversationNode[] consequentOptions { get; set; }
+		string npcName { get; set; }
+		public List<ConversationNode> ConversationTree { get; set; }
     }
 
-    public class readInData
-    {
-       /* StringReader input = new StringReader(Document);
-        Deserializer deserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
-         order = deserializer.Deserialize<Order>(input);*/
-    }
 }
