@@ -29,6 +29,7 @@ public class Model : MonoBehaviour {
     { 
         //Read in archetype file
         Reader = new StringReader(Resources.Load<TextAsset>("creatures").text);
+		NPCReader = new StringReader(Resources.Load<TextAsset>("npcDefinitions").text);
         CamelCaseDeserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
         DialogNPCs = new List<NpcData>();
     }
@@ -45,6 +46,11 @@ public class Model : MonoBehaviour {
 
         return DialogNPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options;
     }
+
+	public List<NpcSprite> GetNpcSprites()
+	{
+		return CamelCaseDeserializer.Deserialize<List<NpcSprite>>(NPCReader);
+	}
 
     public string GetRandomPlayerText(int ConversationOptionIndex)
     {

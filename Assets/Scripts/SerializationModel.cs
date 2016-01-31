@@ -38,19 +38,24 @@ namespace SerializationModel {
 		public List<ConversationNode> ConversationTree { get; set; }
     }
 
-
-    public class NPCSprite
+    public class NpcSprite
     {
-        public string SpriteName;
-        public List<npcSpriteVariant> variants;
+		// The name of the sprite (e.g. 'horse' corresponds to the sprite 'horse.jpg')
+		public string SpriteName { get; set; }
+		// The list of variations on the sprite
+		public List<NpcSpriteVariant> Variants { get; set; }
     }
 
-    public class npcSpriteVariant
+    public class NpcSpriteVariant
     {
-        public string color { get; set; }
-        public int age { get; set; }
-        public string pType { get; set; }
-        public List<string> npcNames { get; set; }
+		// The identifying color of the variant
+        public string Colour { get; set; }
+		// The age of this creature variant
+        public int Age { get; set; }
+		// Personality type of this variant
+        public string PType { get; set; }
+		// List of possible names a creature of this variant can have
+        public List<string> NpcNames { get; set; }
     }
 
 }

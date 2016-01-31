@@ -19,6 +19,7 @@ public class SwipeView : MonoBehaviour, IView
     void Start()
     {
         topCardOriginalPosition = topCard.transform.position;
+
     }
     public void ChangeView(IView nextView)
     {
@@ -31,6 +32,9 @@ public class SwipeView : MonoBehaviour, IView
     }
 
     float LastSliderValue = 0.0f;
+
+	[SerializeField]
+	Controller GameController;
 
     [SerializeField]
     RectTransform Root;
