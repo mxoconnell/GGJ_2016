@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using SerializationModel;
 
 public class Controller : MonoBehaviour {
-    
+
+    [SerializeField]
+    Model GameModel;
+    [SerializeField]
+    BattleView BattleV;
+
     public void ChangeToView(IView nextView)
     {
 
@@ -27,13 +34,16 @@ public class Controller : MonoBehaviour {
     public void GetSwipeInfo() { }
     public void GetBattleInfo() { }
 
-    void OnBattleStart()
+    public List<ConversationOption> GetPlayerOptions()
     {
-        
+      return GameModel.GetPlayerOptions();
     }
     
     void OnPlayerSelectOption(int optionNumber)
     {
         //do something with the game logic
+        BattleV.SetPlayerDialog(GameModel.GetRandomPlayerText(optionNumber));
     }
+
+
 }

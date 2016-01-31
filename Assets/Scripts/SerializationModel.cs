@@ -34,7 +34,7 @@ namespace SerializationModel {
 
     public class NpcData
     {
-		string NpcName { get; set; }
+        public string NpcName { get; set; }
 		public List<ConversationNode> ConversationTree { get; set; }
     }
 
