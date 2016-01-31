@@ -4,7 +4,8 @@ using System;
 
 //Buttons have OnClick methods tied via the editor to public methods
 
-public class SwipeView : MonoBehaviour, IView  {
+public class SwipeView : MonoBehaviour, IView
+{
     public GameObject topCard;
     public GameObject bottomCard;
 
@@ -12,7 +13,8 @@ public class SwipeView : MonoBehaviour, IView  {
     bool canSwipe = true; //false when we are swiping
     float dx = 3;
     float dy = 2;
-
+    int hLim = 100;//Determines when the card is far enough away to reshuffle, also limits drag distance
+    int vLim = 100;
 
     void Start()
     {
@@ -50,6 +52,25 @@ public class SwipeView : MonoBehaviour, IView  {
     // Update is called once per frame
     void Update()
     {
+        //Get the position of the card's viewport's content
+        Vector3 contentPosition = topCard.transform.GetChild(0).transform.GetChild(0).position;
+
+        //swipe distance enough to initiate
+        if (Vector3.Distance(topCardOriginalPosition, contentPosition) > hLim / 7)//TODO remove magic 5
+        {
+            //determine if swipe was right/left
+            if (topCardOriginalPosition.x > contentPosition.x)
+            {
+                swipeInitiated(true);
+            }
+            else
+            {
+                swipeInitiated(false);
+            }
+
+        }
+
+        //If the user cannot swipe, move it off of the screen
         if (!canSwipe)
         {
             var cardPosition = topCard.transform.position;
@@ -59,10 +80,11 @@ public class SwipeView : MonoBehaviour, IView  {
             //fade out also
 
             //Card has left view. Allow user to swipe again. Move the bottom card to where the top was and bring it to the front. 
-            if(cardPosition.x > 100 || cardPosition.x < -100)//TODO remove magic and compare to "topCardOriginalPosition"
+            if (cardPosition.x > hLim || cardPosition.x < -hLim)//TODO remove magic and compare to "topCardOriginalPosition"
             {
                 canSwipe = true;
                 dx = Math.Abs(dx);
+
                 topCard.transform.position = bottomCard.transform.position;
                 bottomCard.transform.position = topCardOriginalPosition;
                 bottomCard.transform.SetAsLastSibling();
@@ -75,59 +97,20 @@ public class SwipeView : MonoBehaviour, IView  {
             }
         }
     }
- 
 
-
-    public void swipeCompleted(bool isRight)
+    public void swipeInitiated(bool isRight)
     {
         if (canSwipe)
         {
             if (isRight)
                 dx *= -1;
 
-            Debug.Log("Swiped!");
+            //Debug.Log("Swiped!");
 
             dy = UnityEngine.Random.Range(-dy, dy);
-            Debug.Log(dy + ":dy");
             canSwipe = false;
-            
+
 
         }
     }
-
-
-
-    /*if (Input.GetMouseButtonUp(0) && CheckSliderBounds())
- {
-     //Call controller event (SliderValue<-1 for left, SliderValue>1 for right)
-     DidSwipe(LastSliderValue);
-
-     if (LastSliderValue > 0)
-     {
-         Animators[0].SetTrigger("SwipeLeft");
-     }
-     if (LastSliderValue < 0)
-     {
-         Animators[0].SetTrigger("SwipeRight");
-     }
-     //Wait then Swap foreground for BG, 
-     LastSliderValue = 0.0f;
-
- }
-}
-
-//assigned via inspector.
-public void Swipe(Vector2 SliderValue)
-{
- LastSliderValue = SliderValue.x;
-}
-
-bool CheckSliderBounds()
-{
- if (LastSliderValue > SliderThreshold || LastSliderValue < -SliderThreshold)
- {
-     return true;
- }
- else return false;*/
-
 }
