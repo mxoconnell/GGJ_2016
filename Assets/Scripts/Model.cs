@@ -23,7 +23,9 @@ public class Model : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Reader = new StringReader(Resources.Load<TextAsset>("npc_data").text);
+        // Reader = new StringReader(Resources.Load<TextAsset>("npc_data").text);
+
+        Reader = new StringReader(Resources.Load<TextAsset>("creatures").text);
 
         CamelCaseDeserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
         NPCs = new List<NpcData>();

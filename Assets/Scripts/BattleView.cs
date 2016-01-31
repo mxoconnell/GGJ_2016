@@ -42,6 +42,7 @@ public class BattleView : MonoBehaviour
 
     void BattleStart()
     {
+        //initialize
         SetPlayerOptions(GameController.GetPlayerOptions());
     }
 
@@ -96,14 +97,13 @@ public class BattleView : MonoBehaviour
     public void OnBattleEnd(string finishText)
     {
         FinishDialog.text = finishText;
-        //Hide options
         PlayerOptionVisibility(false);
         FinishDialogBox.SetActive(true);
-        //show confirm/calendarbutton
     }
 
     public void OnBattlePanelClosed()
     {
-
+        PlayerOptionVisibility(true);
+        //initialize
     }
 }
