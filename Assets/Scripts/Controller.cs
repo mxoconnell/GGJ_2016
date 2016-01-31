@@ -51,6 +51,8 @@ public class Controller : MonoBehaviour {
     //Wait is over! Show the response.
     void ShowNPCResponse(int optionNumber) {
         BattleV.SetDateDialog(GameModel.GetNPCResponse(optionNumber));
+        BattleV.SetPlayerOptions(GetPlayerOptions());
+
     }
 
     public void BattleOver(string endMessage)

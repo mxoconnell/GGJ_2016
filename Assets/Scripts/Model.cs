@@ -64,13 +64,8 @@ public class Model : MonoBehaviour {
 
         for (int i = 0; i<NPCs[CurrentNPC].ConversationTree.Count;++i)// (ConversationNode Node in NPCs[CurrentNPC].ConversationTree)
         {
-           Debug.Log("Target tag: "+targetTag+" "+NPCs[CurrentNPC].ConversationTree[i].Tag);
-            /*
-           if(NPCs[CurrentNPC].ConversationTree[i].Tag==WinTag || NPCs[CurrentNPC].ConversationTree[i].Tag == LoseTag)
-           {
-               EndBattle(NPCs[CurrentNPC].ConversationTree[i].Tag == WinTag);
-               return i;
-           }*/
+           Debug.Log("Target tag: "+targetTag+" Available tag: "+NPCs[CurrentNPC].ConversationTree[i].Tag);
+
             if (NPCs[CurrentNPC].ConversationTree[i].Tag  == targetTag)
             {
                 return i;
