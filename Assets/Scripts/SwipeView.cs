@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using SerializationModel;
 
 //Buttons have OnClick methods tied via the editor to public methods
 
@@ -24,9 +26,12 @@ public class SwipeView : MonoBehaviour, IView
     int hLim = 100;//Determines when the card is far enough away to reshuffle, also limits drag distance
     int vLim = 100;
 
+	IList<NpcSprite> SpriteData;
+
     void Start()
     {
         topCardOriginalPosition = topCard.transform.position;
+		SpriteData = GameController.GetNpcSprites();
     }
     public void ChangeView(IView nextView)
     {
@@ -129,9 +134,17 @@ public class SwipeView : MonoBehaviour, IView
 
     public void FillNextPortrait()
     {
-        NPC newView = bottomCard.GetComponentInChildren<Image>().gameObject.AddComponent<NPC>();
+		NPC npc = bottomCard.GetComponentInChildren<Image>().gameObject.AddComponent<NPC>();
        // bottomCard.GetComponentInChildren<NPC>().InitializeNewNPC();
-        
+		NpcSprite sprite = SpriteData[UnityEngine.Random.Range(0, SpriteData.Count)];
+		NpcSpriteVariant variant = sprite.Variants[UnityEngine.Random.Range(0, sprite.Variants.Count)];
+		string name = variant.NpcNames[UnityEngine.Random.Range(0, variant.NpcNames.Count)];
+		int age = variant.Age;
+
+		npc.NPCName = name;
+		npc.Age = age;
+
+		// TODO Set the sprite images
+		// TODO update the logo image based on the sprite
     }
-    
 }

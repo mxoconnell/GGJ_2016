@@ -6,15 +6,15 @@ using UnityEngine.UI;
 //prefab, view class for NPCS
 public class NPC : MonoBehaviour
 {
-    int Age;
-    string NPCName;
+	public int Age;
+    public string NPCName;
 
-    Image ColorLayer;
+    public Image ColorLayer;
 
-    Image Highlight;
-    Image CharacterSprite;
+    public Image Highlight;
+    public Image CharacterSprite;
 
-    public NPC(int randomNameIndex)
+	void Awake()
     {
         //load in one from a random set of sprites
 
