@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &136270
 GameObject:
   m_ObjectHideFlags: 1
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 44ff487668017ea4285f03c5d1cbd4d9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -288,6 +288,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topCard: {fileID: 176806}
   bottomCard: {fileID: 146588}
+  PortraitA: {fileID: 0}
+  PortraitB: {fileID: 0}
+  NPCNameA: {fileID: 0}
+  NPCNameB: {fileID: 0}
+  NPCAgeA: {fileID: 0}
+  NPCAgeB: {fileID: 0}
+  GameController: {fileID: 0}
   Root: {fileID: 22412876}
   SwipeScreens:
   - {fileID: 22446152}
@@ -307,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 44ff487668017ea4285f03c5d1cbd4d9, type: 2}
   m_Color: {r: 0.031947, g: 0, b: 0.9264706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -504,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 44ff487668017ea4285f03c5d1cbd4d9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -531,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 44ff487668017ea4285f03c5d1cbd4d9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -557,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 44ff487668017ea4285f03c5d1cbd4d9, type: 2}
   m_Color: {r: 0.8308824, g: 0.4582072, b: 0.77433866, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -685,13 +692,13 @@ RectTransform:
   m_GameObject: {fileID: 188186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7188794, y: 4.169868, z: 1}
+  m_LocalScale: {x: 0.99529094, y: 5.69136, z: 1}
   m_Children: []
   m_Father: {fileID: 22404882}
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 180, y: -484}
+  m_AnchoredPosition: {x: 179, y: -484}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22409274
