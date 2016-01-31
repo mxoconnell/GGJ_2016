@@ -8,61 +8,49 @@ using UnityEngine.UI;
 public class BattleView : MonoBehaviour
 {
     [SerializeField]
-    RectTransform Date_DialogBox;
+    RectTransform DateDialogBox;
 
     [SerializeField]
-    Text Date_Dialog;
+    Text DateDialog;
 
     [SerializeField]
-    RectTransform Player_DialogBox;
+    RectTransform PlayerDialogBox;
 
     [SerializeField]
-    Text Player_Dialog;
+    Text PlayerDialog;
 
     [SerializeField]
-    SerializationModel.ConversationNode CurrentNode;
+    Text[] PlayerDialogOptions;
 
     // Use this for initialization
     void Start() {
-        Date_DialogBox.gameObject.SetActive(false);
-        Player_DialogBox.gameObject.SetActive(false);
+        DateDialogBox.gameObject.SetActive(false);
+        PlayerDialogBox.gameObject.SetActive(false);
     }
+
+    public static System.Action<int> OptionClicked;
 
     //Hooked up in the inspector
-    public void Option0Clicked()
+    public void Option0Clicked(int boxNumber)
     {
-        SetNextNode();
-    }
-    public void Option1Clicked()
-    {
-        SetNextNode();
-    }
-    public void Option2Clicked()
-    {
-        SetNextNode();
-    }
-    public void Option3Clicked()
-    {
-        SetNextNode();
+        OptionClicked(boxNumber);
     }
 
-    void SetNextNode()
+    public void SetPlayerDialog()
     {
-      
+        PlayerDialogBox.gameObject.SetActive(true);
     }
 
-    void SetPlayerDialog()
+    public void SetDateDialog(string bodyText)
     {
-
+        DateDialog.text = bodyText;
     }
 
-    void SetDateDialog()
+    public void SetPlayerOptions(string[] options)
     {
-
-    }
-
-    void SetPlayerOptions()
-    {
-
+        for(int i = 0; i< options.Length; ++i)
+        {
+            PlayerDialogOptions[i].text = options[i];
+        }
     }
 }
