@@ -304,17 +304,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 22431942, guid: 129f184a81aacde4297ffc2e2e6c5c22, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 144808, guid: 129f184a81aacde4297ffc2e2e6c5c22, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 129f184a81aacde4297ffc2e2e6c5c22, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &364062059 stripped
 RectTransform:
-  m_PrefabParentObject: {fileID: 22494358, guid: 129f184a81aacde4297ffc2e2e6c5c22,
+  m_PrefabParentObject: {fileID: 22431942, guid: 129f184a81aacde4297ffc2e2e6c5c22,
     type: 2}
-  m_PrefabInternal: {fileID: 364062058}
---- !u!1 &364062060 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 104338, guid: 129f184a81aacde4297ffc2e2e6c5c22, type: 2}
   m_PrefabInternal: {fileID: 364062058}
 --- !u!1 &443820451
 GameObject:
@@ -601,7 +605,7 @@ Prefab:
     - target: {fileID: 11432998, guid: a2d0bcb75b1271c4d9ff83f1822c4755, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 364062060}
+      objectReference: {fileID: 0}
     - target: {fileID: 11435986, guid: a2d0bcb75b1271c4d9ff83f1822c4755, type: 2}
       propertyPath: GameController
       value: 
