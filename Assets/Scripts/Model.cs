@@ -9,8 +9,12 @@ using System.Collections.Generic;
 public class Model : MonoBehaviour {
 
     StringReader Reader;
+    StringReader NPCReader;
+
     Deserializer CamelCaseDeserializer;
-    List<NpcData> NPCs;
+
+    //Dialog info
+    List<NpcData> DialogNPCs;
 
     int CurrentNPC = 0;
     int CurrentConversationNodeIndex = 0;
@@ -20,35 +24,60 @@ public class Model : MonoBehaviour {
 
     public static System.Action<string> OnBattleFinish;
 
+    //NPC definitions
+    List<NPC> NPCList;
+
     // Use this for initialization
     void Awake()
-    {
-        // Reader = new StringReader(Resources.Load<TextAsset>("npc_data").text);
-
+    { 
+        //Read in archetype file
         Reader = new StringReader(Resources.Load<TextAsset>("creatures").text);
-
         CamelCaseDeserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
+        DialogNPCs = new List<NpcData>();
+    }
 
-        NPCs = new List<NpcData>();
+    #region SwipeView
+
+    //initialize definitions list
+    List<NPC> InitializeNPCList()
+    {
+        NPCReader = new StringReader(Resources.Load<TextAsset>("NPCDefinitions").text);
+        CamelCaseDeserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
+        NPCList = new List<NPC>();
+
+        NPCList = CamelCaseDeserializer.Deserialize <List<NPC>>(NPCReader);
+
+        return NPCList;
+    }
+     
+
+    NPC GetRandomNPC()
+    {
+
+        return new NPC();
     }
     
+    #endregion
+
+    #region BattleScreen
+
     public List<ConversationOption> GetPlayerOptions () { 
         //TODO Move this line up to Awake?  
-        if(NPCs.Count==0) NPCs = CamelCaseDeserializer.Deserialize<List<NpcData>>(Reader);
+        if(DialogNPCs.Count==0) DialogNPCs = CamelCaseDeserializer.Deserialize<List<NpcData>>(Reader);
 
-        return NPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options;
+        return DialogNPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options;
     }
 
     public string GetRandomPlayerText(int ConversationOptionIndex)
     {
-        List<string> PlayerTextList = NPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options[ConversationOptionIndex].PlayerText;
+        List<string> PlayerTextList = DialogNPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options[ConversationOptionIndex].PlayerText;
 
         return PlayerTextList[Random.Range(0, PlayerTextList.Count)];
     }
 
     public string GetNPCResponse(int ConversationOptionIndex)
     {
-        Response r = NPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options[ConversationOptionIndex].Response;
+        Response r = DialogNPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options[ConversationOptionIndex].Response;
 
         //set the next node!
 
@@ -62,16 +91,11 @@ public class Model : MonoBehaviour {
         if (targetTag == WinTag) { EndBattle(true); return 0; }
         if (targetTag == LoseTag) { EndBattle(false); return 0; }
 
-        for (int i = 0; i<NPCs[CurrentNPC].ConversationTree.Count;++i)// (ConversationNode Node in NPCs[CurrentNPC].ConversationTree)
+        for (int i = 0; i<DialogNPCs[CurrentNPC].ConversationTree.Count;++i)// (ConversationNode Node in DialogNPCs[CurrentNPC].ConversationTree)
         {
-           Debug.Log("Target tag: "+targetTag+" "+NPCs[CurrentNPC].ConversationTree[i].Tag);
-            /*
-           if(NPCs[CurrentNPC].ConversationTree[i].Tag==WinTag || NPCs[CurrentNPC].ConversationTree[i].Tag == LoseTag)
-           {
-               EndBattle(NPCs[CurrentNPC].ConversationTree[i].Tag == WinTag);
-               return i;
-           }*/
-            if (NPCs[CurrentNPC].ConversationTree[i].Tag  == targetTag)
+           Debug.Log("Target tag: "+targetTag+" Available tag: "+DialogNPCs[CurrentNPC].ConversationTree[i].Tag);
+
+            if (DialogNPCs[CurrentNPC].ConversationTree[i].Tag  == targetTag)
             {
                 return i;
             }
@@ -94,4 +118,6 @@ public class Model : MonoBehaviour {
 
         OnBattleFinish(finishText);
     }
+
+    #endregion
 }
