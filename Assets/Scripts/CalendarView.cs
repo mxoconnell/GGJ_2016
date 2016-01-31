@@ -9,6 +9,7 @@ public class CalendarView : MonoBehaviour
 {
     public GameObject popupMidGame;
     public GameObject popupEndGame;
+    public Sprite dateOccupied;
     public GameObject[] days;
     bool[] daysFilled = { true, false, false, false, false, false, false };//true if that day is filled
     [SerializeField]
@@ -27,25 +28,27 @@ public class CalendarView : MonoBehaviour
             if (daysFilled[day])
             {
                 numberOfDates++;
-                Debug.Log("day #" + day + " is booked!");
+                //Debug.Log("day #" + day + " is booked!");
                 //add a heart if we have a date on that day
+                days[day].GetComponent<Image>().sprite = dateOccupied;
+                days[day].GetComponent<Button>().interactable = false;
+
+
             }
         }
 
         //All dates filled
         if(numberOfDates == daysFilled.Length - 1)
         {
-
+            popupMidGame.SetActive(false);
+            popupEndGame.SetActive(true);
         }
     }
 
-
-
-    void SetCalendarGraphics()
+    public void AddANewDate(int day)
     {
-        for(int i = 0; i < CalendarBookedGraphics.Length; ++i)
-        {
-
-        }
+        daysFilled[day] = true;
+        popupMidGame.SetActive(false);
+        DisplayBookedDays();
     }
 }
