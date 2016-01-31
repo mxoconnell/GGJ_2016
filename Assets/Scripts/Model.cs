@@ -31,12 +31,12 @@ public class Model : MonoBehaviour {
 
         NPCs = new List<NpcData>();
     }
+    
+    public List<ConversationOption> GetPlayerOptions () { 
+        //TODO Move this line up to Awake?  
+        if(NPCs.Count==0) NPCs = CamelCaseDeserializer.Deserialize<List<NpcData>>(Reader);
 
-
-    // Update is called once per frame
-    public List<ConversationOption> GetPlayerOptions () {   
-        NPCs = CamelCaseDeserializer.Deserialize<List<NpcData>>(Reader);
-        return NPCs[CurrentNPC].ConversationTree[0].Options;
+        return NPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options;
     }
 
     public string GetRandomPlayerText(int ConversationOptionIndex)
@@ -59,21 +59,26 @@ public class Model : MonoBehaviour {
 
     int GetConversationTreeIndexforTag(string targetTag)
     {
-        for(int i = 0; i<NPCs[CurrentNPC].ConversationTree.Count;++i)// (ConversationNode Node in NPCs[CurrentNPC].ConversationTree)
+        if (targetTag == WinTag) { EndBattle(true); return 0; }
+        if (targetTag == LoseTag) { EndBattle(false); return 0; }
+
+        for (int i = 0; i<NPCs[CurrentNPC].ConversationTree.Count;++i)// (ConversationNode Node in NPCs[CurrentNPC].ConversationTree)
         {
-            Debug.Log("Target tag: "+targetTag+" "+NPCs[CurrentNPC].ConversationTree[i].Tag);
-            if(NPCs[CurrentNPC].ConversationTree[i].Tag==WinTag || NPCs[CurrentNPC].ConversationTree[i].Tag == LoseTag)
-            {
-                EndBattle(NPCs[CurrentNPC].ConversationTree[i].Tag == WinTag);
-                return i;
-            }
-           if(NPCs[CurrentNPC].ConversationTree[i].Tag  == targetTag)
+           Debug.Log("Target tag: "+targetTag+" "+NPCs[CurrentNPC].ConversationTree[i].Tag);
+            /*
+           if(NPCs[CurrentNPC].ConversationTree[i].Tag==WinTag || NPCs[CurrentNPC].ConversationTree[i].Tag == LoseTag)
+           {
+               EndBattle(NPCs[CurrentNPC].ConversationTree[i].Tag == WinTag);
+               return i;
+           }*/
+            if (NPCs[CurrentNPC].ConversationTree[i].Tag  == targetTag)
             {
                 return i;
             }
         }
 
-        Debug.LogError("No response. Starting over!");
+        //Maybe downgrade to a warning if this is actually a possibility.
+        Debug.LogError("No matching response. Starting over!");
         return 0;
     }
 
@@ -84,6 +89,7 @@ public class Model : MonoBehaviour {
         if (didWin == false)
         {
             finishText = "Too bad. Better luck next time!";
+            //change button text
         }
 
         OnBattleFinish(finishText);

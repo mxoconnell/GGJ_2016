@@ -77,6 +77,7 @@ public class BattleView : MonoBehaviour
     {
         DateDialogBox.gameObject.SetActive(true);
         DateDialog.text = bodyText;
+        SetPlayerOptions(GameController.GetPlayerOptions());
     }
 
     public void SetPlayerOptions(List<ConversationOption> options)
