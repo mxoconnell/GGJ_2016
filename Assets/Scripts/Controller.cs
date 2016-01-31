@@ -8,7 +8,6 @@ public class Controller : MonoBehaviour {
     /// </summary>
 
     public SwipeView SwipeV;
-    public Animator SwipeA;
 
     public IView CurrentView;
 
@@ -26,7 +25,7 @@ public class Controller : MonoBehaviour {
 
     void Swipe(float amount)
     {
-        SwipeA.SetFloat("Swipe", amount);
+
     }
 
     /// <summary>

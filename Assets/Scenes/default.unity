@@ -158,6 +158,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 112886966}
+--- !u!95 &146424221 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9555322, guid: eb9243f949f294f43a2e0053e20cdd62,
+    type: 2}
+  m_PrefabInternal: {fileID: 1337097363}
 --- !u!1 &443820451
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +224,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!95 &482732489 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9555322, guid: eb9243f949f294f43a2e0053e20cdd62,
+    type: 2}
+  m_PrefabInternal: {fileID: 1397838187}
+--- !u!224 &513507658 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22444566, guid: eb9243f949f294f43a2e0053e20cdd62,
+    type: 2}
+  m_PrefabInternal: {fileID: 1397838187}
 --- !u!1 &673096917
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,9 +300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Root: {fileID: 673096918}
-  Controller: {fileID: 673096919}
   SwipeScreens: []
-  ForegroundSwipeScreen: {fileID: 0}
+  Animators: []
   SliderThreshold: 0
 --- !u!114 &673096921
 MonoBehaviour:
@@ -325,11 +339,6 @@ CanvasRenderer:
 --- !u!224 &884398819 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22443632, guid: eb9243f949f294f43a2e0053e20cdd62,
-    type: 2}
-  m_PrefabInternal: {fileID: 1397838187}
---- !u!95 &884398822 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 9506338, guid: eb9243f949f294f43a2e0053e20cdd62,
     type: 2}
   m_PrefabInternal: {fileID: 1397838187}
 --- !u!1 &967460652
@@ -425,6 +434,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &1238650590 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22444566, guid: eb9243f949f294f43a2e0053e20cdd62,
+    type: 2}
+  m_PrefabInternal: {fileID: 1337097363}
 --- !u!1 &1245484720
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,10 +486,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Root: {fileID: 1245484721}
-  Controller: {fileID: 0}
-  SwipeScreens: []
-  ForegroundSwipeScreen: {fileID: 0}
-  SliderThreshold: 0
+  SwipeScreens:
+  - {fileID: 513507658}
+  - {fileID: 1238650590}
+  Animators:
+  - {fileID: 482732489}
+  - {fileID: 146424221}
+  SliderThreshold: 0.7
 --- !u!1 &1278796656
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,10 +539,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1245484721}
     m_Modifications:
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 22443632, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -598,66 +611,39 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 22443632, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22443632, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22443632, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 163634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
       propertyPath: m_Name
       value: SwipeScreenB
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_Color.r
-      value: 0.8308824
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_Color.g
-      value: 0.4582072
-      objectReference: {fileID: 0}
-    - target: {fileID: 11472634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_Color.b
-      value: 0.77433866
-      objectReference: {fileID: 0}
-    - target: {fileID: 11464376, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_Text
-      value: 'SwipeyB
-
-'
-      objectReference: {fileID: 0}
-    - target: {fileID: 163634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1245484722}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swipe
+    - target: {fileID: 11472634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_Color.r
+      value: 0.031947
       objectReference: {fileID: 0}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+    - target: {fileID: 11472634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_Color.b
+      value: 0.9264706
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11423206, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+    - target: {fileID: 11472634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 163634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 165566, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 106824, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1337097364 stripped
@@ -672,10 +658,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1245484721}
     m_Modifications:
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 22443632, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -748,32 +730,27 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 163634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_Name
-      value: SwipeScreenA
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 11457576, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1245484720}
+    - target: {fileID: 11476188, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1245484720}
     - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1245484722}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Swipe
+    - target: {fileID: 163634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_Name
+      value: SwipeScreenA
       objectReference: {fileID: 0}
-    - target: {fileID: 11421744, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+    - target: {fileID: 163634, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11423206, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb9243f949f294f43a2e0053e20cdd62, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1461827884
@@ -842,9 +819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Root: {fileID: 1461827885}
-  Controller: {fileID: 1461827886}
   SwipeScreens: []
-  ForegroundSwipeScreen: {fileID: 0}
+  Animators: []
   SliderThreshold: 0
 --- !u!114 &1461827888
 MonoBehaviour:
@@ -918,8 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb758f899d39194d995884e19494960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwipeV: {fileID: 0}
-  SwipeA: {fileID: 884398822}
+  SwipeV: {fileID: 1245484722}
 --- !u!1 &2074986796
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,21 +22,16 @@ public class SwipeView : MonoBehaviour, IView  {
     RectTransform Root;
 
     [SerializeField]
-    Animator Controller;
-
-    [SerializeField]
     RectTransform[] SwipeScreens;
 
     [SerializeField]
-    RectTransform ForegroundSwipeScreen;
+    Animator[] Animators;
+
+    int Selector = 0;
 
     [SerializeField]
     float SliderThreshold;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
 
     public static System.Action<float> DidSwipe;
 	
@@ -44,10 +39,20 @@ public class SwipeView : MonoBehaviour, IView  {
 	void Update () {
         if (Input.GetMouseButtonUp(0) && CheckSliderBounds())
         {
-            Debug.Log("Let go");
             //Call controller event (SliderValue<-1 for left, SliderValue>1 for right)
             DidSwipe(LastSliderValue);
-            //Wait then Swap foreground for BG, lastslidervalue = 0.0
+
+            if (LastSliderValue > 0)
+            {
+                Animators[0].SetTrigger("SwipeLeft");
+            }
+            if (LastSliderValue < 0)
+            {
+                Animators[0].SetTrigger("SwipeRight");
+            }
+            //Wait then Swap foreground for BG, 
+            LastSliderValue = 0.0f;
+
         }
     }
 
@@ -55,7 +60,6 @@ public class SwipeView : MonoBehaviour, IView  {
     public void Swipe(Vector2 SliderValue)
     {
         LastSliderValue = SliderValue.x;
-
     }
 
     bool CheckSliderBounds()
