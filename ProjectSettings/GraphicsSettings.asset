@@ -16,7 +16,7 @@ GraphicsSettings:
   m_AlwaysIncludedShaders: []
   m_PreloadedShaders: []
   m_ShaderSettings:
-    useScreenSpaceShadows: 0
+    useScreenSpaceShadows: 1
   m_BuildTargetShaderSettings: []
   m_LightmapStripping: 0
   m_FogStripping: 0
