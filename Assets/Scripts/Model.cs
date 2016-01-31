@@ -41,14 +41,14 @@ public class Model : MonoBehaviour {
 
     public string GetRandomPlayerText(int ConversationOptionIndex)
     {
-        List<string> PlayerTextList = NPCs[CurrentNPC].ConversationTree[0].Options[ConversationOptionIndex].PlayerText;
+        List<string> PlayerTextList = NPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options[ConversationOptionIndex].PlayerText;
 
         return PlayerTextList[Random.Range(0, PlayerTextList.Count)];
     }
 
     public string GetNPCResponse(int ConversationOptionIndex)
     {
-        Response r = NPCs[CurrentNPC].ConversationTree[0].Options[ConversationOptionIndex].Response;
+        Response r = NPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options[ConversationOptionIndex].Response;
 
         //set the next node!
 
@@ -61,6 +61,7 @@ public class Model : MonoBehaviour {
     {
         for(int i = 0; i<NPCs[CurrentNPC].ConversationTree.Count;++i)// (ConversationNode Node in NPCs[CurrentNPC].ConversationTree)
         {
+            Debug.Log("Target tag: "+targetTag+" "+NPCs[CurrentNPC].ConversationTree[i].Tag);
             if(NPCs[CurrentNPC].ConversationTree[i].Tag==WinTag || NPCs[CurrentNPC].ConversationTree[i].Tag == LoseTag)
             {
                 EndBattle(NPCs[CurrentNPC].ConversationTree[i].Tag == WinTag);
