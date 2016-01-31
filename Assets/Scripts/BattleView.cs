@@ -27,6 +27,12 @@ public class BattleView : MonoBehaviour
     [SerializeField]
     Controller GameController;
 
+    [SerializeField]
+    GameObject FinishDialogBox;
+
+    [SerializeField]
+    Text FinishDialog;
+
     // Use this for initialization
     void Start() {
         DateDialogBox.gameObject.SetActive(false);
@@ -41,11 +47,22 @@ public class BattleView : MonoBehaviour
 
 
     public static System.Action<int> OptionClicked;
+    public static System.Action<int> TypingDelayDone;
 
     //Hooked up in the inspector
     public void Option0Clicked(int boxNumber)
     {
         OptionClicked(boxNumber);
+    }
+
+    public IEnumerator NPCIstyping(int selectionNumber)
+    {
+        SetDateDialog("...");
+        //Todo: make public/adjustable variable
+        float typingDelay = UnityEngine.Random.Range(1.0f, 3.0f);
+
+        yield return new WaitForSeconds(typingDelay);
+        TypingDelayDone(selectionNumber);
     }
 
     public void SetPlayerDialog(string newText)
@@ -56,6 +73,7 @@ public class BattleView : MonoBehaviour
 
     public void SetDateDialog(string bodyText)
     {
+        DateDialogBox.gameObject.SetActive(true);
         DateDialog.text = bodyText;
     }
 
@@ -65,5 +83,27 @@ public class BattleView : MonoBehaviour
         {
             PlayerDialogOptions[i].text = options[i].Name.ToString();
         }
+    }
+
+    void PlayerOptionVisibility(bool isVisible)
+    {
+        foreach(Text UIText in PlayerDialogOptions)
+        {
+            UIText.gameObject.SetActive(isVisible);
+        }
+    }
+
+    public void OnBattleEnd(string finishText)
+    {
+        FinishDialog.text = finishText;
+        //Hide options
+        PlayerOptionVisibility(false);
+        FinishDialogBox.SetActive(true);
+        //show confirm/calendarbutton
+    }
+
+    public void OnBattlePanelClosed()
+    {
+
     }
 }

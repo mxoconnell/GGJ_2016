@@ -19,20 +19,16 @@ public class Controller : MonoBehaviour {
     {
         SwipeView.DidSwipe += Swipe;
         BattleView.OptionClicked += OnPlayerSelectOption;
+        BattleView.OptionClicked += GetNPCResponse;
+
+        BattleView.TypingDelayDone += ShowNPCResponse;
+        Model.OnBattleFinish += BattleOver;
     }
 
     void Swipe(float amount)
     {
 
     }
-
-    /// <summary>
-    /// Getters
-    /// </summary>
-
-    public void GetCalendarInfo() { }
-    public void GetSwipeInfo() { }
-    public void GetBattleInfo() { }
 
     public List<ConversationOption> GetPlayerOptions()
     {
@@ -41,9 +37,24 @@ public class Controller : MonoBehaviour {
     
     void OnPlayerSelectOption(int optionNumber)
     {
-        //do something with the game logic
         BattleV.SetPlayerDialog(GameModel.GetRandomPlayerText(optionNumber));
+
+        //select response from NPC and show
     }
 
+    //Starts wait for NPC response
+    void GetNPCResponse(int optionNumber)
+    {
+        BattleV.StartCoroutine(BattleV.NPCIstyping(optionNumber));
+    }
 
+    //Wait is over! Show the response.
+    void ShowNPCResponse(int optionNumber) {
+        BattleV.SetDateDialog(GameModel.GetNPCResponse(optionNumber));
+    }
+
+    public void BattleOver(string endMessage)
+    {
+      BattleV.OnBattleEnd(endMessage);
+    }
 }

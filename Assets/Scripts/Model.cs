@@ -13,6 +13,12 @@ public class Model : MonoBehaviour {
     List<NpcData> NPCs;
 
     int CurrentNPC = 0;
+    int CurrentConversationNodeIndex = 0;
+
+    const string WinTag = "WIN";
+    const string LoseTag = "LOSE";
+
+    public static System.Action<string> OnBattleFinish;
 
     // Use this for initialization
     void Start()
@@ -36,5 +42,47 @@ public class Model : MonoBehaviour {
         List<string> PlayerTextList = NPCs[CurrentNPC].ConversationTree[0].Options[ConversationOptionIndex].PlayerText;
 
         return PlayerTextList[Random.Range(0, PlayerTextList.Count)];
+    }
+
+    public string GetNPCResponse(int ConversationOptionIndex)
+    {
+        Response r = NPCs[CurrentNPC].ConversationTree[0].Options[ConversationOptionIndex].Response;
+
+        //set the next node!
+
+        CurrentConversationNodeIndex = GetConversationTreeIndexforTag(r.Next);
+
+        return r.NpcText[Random.Range(0, r.NpcText.Count)];
+    }
+
+    int GetConversationTreeIndexforTag(string targetTag)
+    {
+        for(int i = 0; i<NPCs[CurrentNPC].ConversationTree.Count;++i)// (ConversationNode Node in NPCs[CurrentNPC].ConversationTree)
+        {
+            if(NPCs[CurrentNPC].ConversationTree[i].Tag==WinTag || NPCs[CurrentNPC].ConversationTree[i].Tag == LoseTag)
+            {
+                EndBattle(NPCs[CurrentNPC].ConversationTree[i].Tag == WinTag);
+                return i;
+            }
+           if(NPCs[CurrentNPC].ConversationTree[i].Tag  == targetTag)
+            {
+                return i;
+            }
+        }
+
+        Debug.LogError("No response. Starting over!");
+        return 0;
+    }
+
+    void EndBattle(bool didWin)
+    {
+        string finishText = "Grats! You won! Click to go to the calendar and schedule your date.";
+
+        if (didWin == false)
+        {
+            finishText = "Too bad. Better luck next time!";
+        }
+
+        OnBattleFinish(finishText);
     }
 }
