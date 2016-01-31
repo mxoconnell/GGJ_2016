@@ -60,7 +60,7 @@ public class BattleView : MonoBehaviour
     {
         SetDateDialog("...");
         //Todo: make public/adjustable variable
-        float typingDelay = UnityEngine.Random.Range(1.0f, 3.0f);
+        float typingDelay = UnityEngine.Random.Range(0.5f, 2.0f);
 
         yield return new WaitForSeconds(typingDelay);
         TypingDelayDone(selectionNumber);
