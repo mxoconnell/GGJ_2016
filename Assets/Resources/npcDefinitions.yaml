@@ -1,15 +1,16 @@
-- npcSprite: "horse"
-   - variant: pink
-         npcNames: &horseNames 
-             - "Hoover"
-             - "Chief"
-             - "Shasta"
-         pType: horny
-         age: 5
-   - variant: blue
-         npcNames: &horseNames 
-             - "Jazz"
-             - "Midnight Storm"
-             - "Whiskey"
-         pType: shy
-         age: 7 
+- spriteName: "horse"
+  variants:
+     - colour: pink
+       npcNames: &horseNames_pink 
+         - "Hoover"
+         - "Chief"
+         - "Shasta"
+       pType: horny
+       age: 5
+     - colour: blue
+       npcNames: &horseNames_blue
+         - "Jazz"
+         - "Midnight Storm"
+         - "Whiskey"    
+       pType: horny
+       age: 5
