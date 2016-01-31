@@ -21,20 +21,20 @@ public class Model : MonoBehaviour {
     public static System.Action<string> OnBattleFinish;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         // Reader = new StringReader(Resources.Load<TextAsset>("npc_data").text);
 
         Reader = new StringReader(Resources.Load<TextAsset>("creatures").text);
 
         CamelCaseDeserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
+
         NPCs = new List<NpcData>();
     }
 
 
     // Update is called once per frame
-    public List<ConversationOption> GetPlayerOptions () {
-
+    public List<ConversationOption> GetPlayerOptions () {   
         NPCs = CamelCaseDeserializer.Deserialize<List<NpcData>>(Reader);
         return NPCs[CurrentNPC].ConversationTree[0].Options;
     }

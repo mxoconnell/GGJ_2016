@@ -35,15 +35,16 @@ public class BattleView : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        DateDialogBox.gameObject.SetActive(false);
-        PlayerDialogBox.gameObject.SetActive(false);
-        BattleStart();
+
+      BattleStart();
     }
 
     void BattleStart()
     {
-        //initialize
-        SetPlayerOptions(GameController.GetPlayerOptions());
+        //initialize      
+       DateDialogBox.gameObject.SetActive(false);
+       PlayerDialogBox.gameObject.SetActive(false);
+       SetPlayerOptions(GameController.GetPlayerOptions());
     }
 
 

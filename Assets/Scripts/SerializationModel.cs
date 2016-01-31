@@ -22,7 +22,7 @@ namespace SerializationModel {
     public class Response
     {
         public List<string> NpcText { get; set; }
-        public string Value { get; set; }
+        public string npcHP { get; set; }
         public string Next { get; set; }
     }
 

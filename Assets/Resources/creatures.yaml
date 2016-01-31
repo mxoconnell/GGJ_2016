@@ -1,24 +1,25 @@
-- npcName: "horny"
+ - npcName: "horny"
 #needs HP 2 for successful askOut
-- conversationTree:
-  - tag: start
-  - options:
-    - name: "Ask Out"  
-    - playerText: &askOutIntro 
-      - "Let's cut to the chase - wanna go out?"
-      - "I don't wanna waste your time - lets meet up."
-      - "Hey, so, how about you and I go out on a date?"
-     response:
-       npcText: &horny_denyAskOut_intro
-         - "Hmm... I think I'm a little out of your league, sorry (playerName)"
-       npcHP: 1
-       next: LOSE
-       #
-       npcText: &horny_acceptAskOut_intro
-         - "Sounds good, call me 555-555-5555"
-         - "Lets do it ;)"
-       npcHP: 1
-       next: WIN
+   conversationTree:
+     - tag: start
+       options:
+         - name: "Ask Out"  
+           playerText: &askOutIntro 
+             - "Let's cut to the chase - wanna go out?"
+             - "I don't wanna waste your time - lets meet up."
+             - "Hey, so, how about you and I go out on a date?"
+           response:
+             npcText: &horny_denyAskOut_intro
+               - "Hmm... I think I'm a little out of your league, sorry (playerName)"
+             npcHP: 1
+             next: LOSE
+             #lose state
+             npcText: &horny_acceptAskOut_intro
+               - "Sounds good, call me 555-555-5555"
+               - "Lets do it ;)"
+             npcHP: 1
+             next: WIN
+             #win state
 ###the real choices
     - name: "Flirt"  
      playerText: &compIntro 
