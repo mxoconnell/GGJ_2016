@@ -1,0 +1,238 @@
+ - npcName: "horny"
+#needs HP 2 for successful askOut
+   conversationTree:
+     - tag: start
+       options:
+         - name: "ASK OUT"  
+           playerText: &askOutIntro 
+             - "Let's cut to the chase - wanna go out?"
+             - "I don't wanna waste your time - lets meet up."
+             - "Hey, so, how about you and I go out on a date?"
+           response:
+             npcText: &horny_denyAskOut_intro
+               - "Hmm... I think I'm a little out of your league, sorry (playerName)"
+             npcHP: 1
+             next: LOSE
+             #lose state
+             #win state
+         - name: "FLIRT"  
+           playerText: &flirtIntro
+             - "Hey, you look sexy."
+             - "hey hot stuff ;)"
+             - "You’re on my list of things to do tonight."
+           response:
+             npcText: &horny_flirtIntroResponse
+             - "I love compliments ;) What do you do for fun, (playerName)?"
+             npcHP: 1
+             next: q1
+         - name: "COMPLIMENT"
+           playerText: &compIntro
+             - "Hey, you seem really interesting!"
+             - "I love your smile :)"
+             - "Great photo!"
+             - "You look great!"
+           response:
+             npcText: *horny_flirtIntroResponse
+             npcHP: 1
+             next: q1
+         - name: "JOKE"
+           playerText: &jokeIntro 
+             - "Titanic...not a good icebreaker?"
+             - "Is there a mirror in your pants? Because I can see myself in them."
+             - "Do you play Quiddich? Because you look like a keeper"
+             - "Hope you like cheezy pickup lines, because if you were a fruit, you’d be a fineapple."
+           response:
+             npcText: &horny_jokeIntroResponse
+             - "Hehe...I love jokes. What do you do for fun, (playerName) ?"
+             - "A comedian ;)... What do you do for fun, (playerName) ?"
+             npcHP: 1
+             next: q1
+     - tag: q1
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro
+           response:
+             npcText: *horny_denyAskOut_intro
+             npcHP: 1
+             next: LOSE
+         - name: "FLIRT"
+           playerText: &horny_q1Flirt 
+             - "Right now, look at your photos ;)"
+           response:
+             npcText: &horny_q1Flirt_response
+              - "Oh yeah? What do you think of them?" 
+             npcHP: .5
+             next: q2Flirt
+         - name: "SELF-DEPRICATE"
+           playerText: &horny_q1Dep
+             - "Oh, I mostly just browse the internet seeking validation from strangers."
+           response:
+             npcText: &horny_q1Dep_response
+             - "Whoa, depressing much?" 
+             npcHP: 0
+             next: q2Dep
+         - name: "JOKE"
+           playerText: &horny_q1Joke
+             - "Oh you know. Sex stuff."
+           response: 
+             npcText: &horny_q1Joke_response 
+             - "I know well ;)" 
+             npcHP: 1
+             next: q2Joke
+     - tag: q2Flirt
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro 
+           response:
+             npcText: &horny_acceptAskOut_intro
+               - "Sounds good, call me 555-555-5555"
+               - "Lets do it ;)"
+             npcHP: 1
+             next: WIN
+         - name: "FLIRT"
+           playerText: &horny_q2FlirtFlirt 
+             - "Well, I'd love to see some from your private collection."
+           response: 
+             npcText: &horny_q2FlirtFlirt_response
+             - "I bet ;)"
+             npcHP: 1
+             next: q3Good
+         - name: "Retract"
+           playerText: &horny_q2FlirtRetract 
+             - "I mean, I've seen better."
+           response:  
+             npcText: &horny_q2FlirtRetract_response
+              - "Hm...ok..."
+             npcHP: 0
+             next: q3
+         - name: "NONCOMMITAL"
+           playerText: &horny_q2FlirtNoncom 
+             - "They're fine."
+           response: 
+             npcText: &horny_q2FlirtNoncom_response
+             - "uh..."
+             npcHP: 0
+             next: q3
+     - tag: q2Dep
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro 
+           response:
+             npcText: *horny_denyAskOut_intro
+             npcHP: 0
+             next: LOSE
+         - name: "DEEPER"
+           playerText: &horny_q2DepDeep 
+             - "Aren't we all? Isn't that why we're all here right now?"
+           response: 
+             npcText: &horny_closingLine
+             - "do you want to fuck or what"
+             npcHP: 0
+             next: q3
+         - name: "RETRACT"
+           playerText: &horny_q2DepRetract
+             - "Haha j/k"
+           response: 
+             npcText: *horny_closingLine
+             npcHP: 0
+             next: q3
+         - name: "APOLOGIZE"
+           playerText: &horny_q2DepApologize 
+             - "Sorry, I get caught up in existential dread sometimes."
+           response: 
+             npcText: *horny_closingLine
+             npcHP: 0
+             next: q3 
+     - tag: q2Joke
+       options:
+         - name: "ASK OUT"
+           playerText: *askOutIntro 
+           response:
+             npcText: *horny_acceptAskOut_intro
+             npcHP: 1
+             next: WIN
+         - name: "QUESTION"
+           playerText: &horny_q2JokeQuestion 
+             - "Do you? I don't think you're as well informed as you say you are."
+           response: 
+             npcText: *horny_closingLine
+             npcHP: 1
+             next: q3
+         - name: "AGREE"
+           playerText: &horny_q2JokeAgree 
+             - "Yeah I bet."
+           response: 
+             npcText: *horny_closingLine
+             npcHP: 0
+             next: q3
+         - name: "DISAGREE"
+           playerText: &horny_q2JokeDisagree 
+             - "I don't think you're as well informed as you say you are."
+           response:
+             npcText: *horny_closingLine
+             npcHP: 0
+             next: q3
+     - tag: q3
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro 
+           response:
+             npcText: *horny_denyAskOut_intro
+             npcHP: 0
+             next: LOSE
+         - name: "PLAY COOL"
+           playerText: &horny_q3AskOut 
+             - "Convince me."
+           response: 
+             npcText: &horny_q3AskOut_response
+             - "No."
+             npcHP: 0
+             next: LOSE
+         - name: "ADAMENT"
+           playerText: &horny_q3Adament 
+             - "Yes please"
+           response: 
+             npcText: &horny_q3Adament_response 
+             - "That's more like it ;)"
+             npcHP: 0
+             next: WIN
+         - name: "BOLD"
+           playerText: &horny_q3Bold
+             - "Do you? ;)"
+           response: &horny_q3Bold_response 
+             npcText: 
+             - "Ugh."
+             npcHP: 0
+             next: LOSE
+     - tag: q3Good
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro 
+           response:
+             npcText: *horny_acceptAskOut_intro
+             npcHP: 0
+             next: WIN
+         - name: "RETRACT"
+           playerText: &horny_q3GoodRetract 
+             - "j/k I'm good"
+           response: 
+             npcText: &horny_q3GoodRetract_response 
+             - "...huh."
+             npcHP: 0
+             next: LOSE
+         - name: "FORWARD" 
+           playerText: &horny_q3GoodForward 
+             - "Or you could show me the real thing. ;)"
+           response: 
+             npcText: &horny_q3GoodForward_response 
+             - "Let's do it ;)"
+             npcHP: 0
+             next: WIN
+         - name: "IMPATIENT"
+           playerText: &horny_q3GoodImpatient
+             - "So we doing this or what."
+           response: 
+             npcText: &horny_q3GoodImpatient_response 
+             - "hm...ok. ;)"
+             npcHP: 0
+             next: WIN

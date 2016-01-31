@@ -1,0 +1,331 @@
+ - npcName: "shy"
+#needs HP 4 for successful askOut
+   conversationTree:
+     - tag: start
+       options:
+         - name: "ASK OUT"  
+           playerText: &shy_askOutIntro 
+             - "Let's cut to the chase - wanna go out?"
+             - "I don't wanna waste your time - lets meet up somwhere nice."
+             - "Hey, so, how about you and I go out on a date?"
+           response:
+             npcText: &shy_denyAskOut_intro
+               - "no thanks"
+               - "no"
+               - "no thank you"
+             npcHP: 0
+             next: LOSE
+             #lose state
+             #win state
+         - name: "FLIRT"  
+           playerText: &shy_flirtIntro
+             - "Hey, you look sexy."
+             - "hey hot stuff ;)"
+             - "You’re on my list of things to do tonight."
+           response:
+             npcText: &shy_flirtIntroResponse
+             - "thanks. I like your photo too."
+             npcHP: .5
+             next: q1
+         - name: "COMPLIMENT"
+           playerText: &shy_compIntro
+             - "Hey, you seem really interesting!"
+             - "I love your smile :)"
+             - "Great photo!"
+             - "You look great!"
+           response:
+             npcText: *shy_flirtIntroResponse
+             npcHP: .5
+             next: q1
+         - name: "JOKE"
+           playerText: &jokeIntro 
+             - "Titanic...not a good icebreaker?"
+             - "Is there a mirror in your pants? Because I can see myself in them."
+             - "Do you play Quiddich? Because you look like a keeper"
+             - "Hope you like cheezy pickup lines, because if you were a fruit, you’d be a fineapple."
+           response:
+             npcText: &shy_jokeIntroResponse
+             - "Haha"
+             - " :) "
+             npcHP: 1
+             next: q1
+     - tag: q1
+       options:
+         - name: "ASK OUT"  
+           playerText: *shy_askOutIntro
+           response:
+             npcText: *shy_denyAskOut_intro
+             npcHP: 1
+             next: LOSE
+         - name: "MOVIES?"
+           playerText: &shy_q1Movies 
+             - "So what kind of movies you like?"
+             - "So, favourite movie"
+             - "You like movies?"
+           response:
+             npcText: &shy_q1Movies_response
+              - "I really liked Point Break"
+              - "The matrix was cool"
+              - "Speed was good"              
+             npcHP: 1
+             next: q2Movies
+         - name: "FOOD?"
+           playerText: &shy_q1Food
+             - "So, favourite food?"
+             - "If you had to pick one food to eat for the rest of your life, what would it be?"
+             - "What's your favourite food?"
+           response:
+             npcText: &shy_q1Food_response
+             - "I like cookies"
+             - "Cake."
+             - "Twizlers"             
+             npcHP: 1
+             next: q2Food
+         - name: "MUSIC?"
+           playerText: &shy_q1Music
+             - "What are you listening to lately?"
+             - "What kind of music you like?"
+             - "What do you like to listen to, music-wise?"
+           response: 
+             npcText: &shy_q1Music_response 
+             - "I like this band Hoboken"
+             - "I like this band Manasquan"
+             - "I like this band Tom's River"             
+             npcHP: 1
+             next: q2Music
+     - tag: q2Movies
+       options:
+         - name: "ASK OUT"  
+           playerText: *shy_askOutIntro 
+           response:
+             npcText: &shy_rejectAskOut_q2
+               - "oh...no"
+               - "uhm..."
+             npcHP: 0
+             next: LOSE
+         - name: "ME TOO"
+           playerText: &shy_q2MoviesToo 
+             - "Hey, same here. "
+             - "Yeah, that movie is great!"
+           response: 
+             npcText: &shy_q2MoviesToo_response
+             - "well, I mostly just like it for Keanu Reeves :)"
+             npcHP: .5
+             next: q3Keanu
+         - name: "WORST"
+           playerText: &shy_q2MoviesWorst 
+             - "Ugh, that movie was terrible"
+             - "What? That was awful"
+             - "I gotta say, that movie was pretty bad"
+           response:  
+             npcText: &shy_q2MoviesWorst_response
+              - "heh...I know, I just really like Keanu Reeves."
+             npcHP: 0
+             next: q3Keanu
+         - name: "KEANU"
+           playerText: &shy_q2MoviesReeves 
+             - "So you're a big Keanu Reeves fan, huh?"
+             - "Keanu Reeves is great in that!"
+             - "Oh cool, I like Keanur Reeves in that."
+           response: 
+             npcText: &shy_q2MoviesReeves_response
+             - "Yeah :) You look kind of like him."
+             npcHP: 0
+             next: q3Keanu
+     - tag: q2Food
+       options:
+         - name: "ASK OUT"  
+           playerText: *shy_askOutIntro 
+           response:
+             npcText: *shy_rejectAskOut_q2
+             npcHP: 0
+             next: LOSE
+         - name: "ME TOO"
+           playerText: &shy_q2FoodToo 
+             - "Hey me too!"
+           response: 
+             npcText: &shy_q2FoodToo_response
+             - "It is pretty unhealthy :/"
+             npcHP: 0
+             next: q3Unhealthy
+         - name: "BAD FOR YOU"
+           playerText: &shy_q2FoodBad
+             - "That's pretty bad for you"
+             - "That seems...unhealthy"
+             - "Isn't that kind of unhealthy?"
+           response: 
+             npcText: *shy_q2FoodToo_response
+             npcHP: 0
+             next: q3Unhealthy
+         - name: "JOKE"
+           playerText: &horny_q2DepApologize 
+             - "Oh, I guess you're real sweet then ;)"
+           response: 
+             npcText: &shy_q2FoodJoke_response
+             - "no, just really unhealthy"
+             npcHP: 0
+             next: q3Unhealthy 
+     - tag: q2Music
+       options:
+         - name: "ASK OUT"
+           playerText: *shy_askOutIntro 
+           response:
+             npcText: *shy_rejectAskOut_q2
+             npcHP: 0
+             next: LOSE
+         - name: "ME TOO"
+           playerText: &shy_q2MusicToo 
+             - "Yeah, they're great!"
+             - "Hey, me too!"
+           response: 
+             npcText: &shy_q2MusicToo_response
+             - "cool. What do you like about them?"
+             npcHP: 0
+             next: q3Music
+         - name: "WHO?"
+           playerText: &shy_q2MusicWho 
+             - "Sorry, I don't know 'em"
+             - "Oh, I don't know that one"
+           response: 
+             npcText: &shy_q2_MusicWho_response
+             - "That's okay =) I don't know a lot of bands, really."
+             npcHP: 1
+             next: q3MusicGood
+         - name: "CALL OUT"
+           playerText: &shy_q2MusicCallOut 
+             - "That's not a band, it's a town in New Jersey."
+           response:
+             npcText: &shy_q2MusicCallOut_response
+             - "Heh...got me =) I don't know a lot of bands, really."
+             npcHP: 1
+             next: q3MusicGood
+     - tag: q3Keanu
+       options:
+         - name: "ASK OUT"  
+           playerText: *shy_askOutIntro
+           response:
+             npcText: &shy_q3askOut_success
+             - "haha, okay. =)"
+             npcHP: 0
+             next: WIN
+         - name: "ROLEPLAYING"
+           playerText: &shy_q3Roleplay 
+             - "I make a pretty convincing Keanu Reeves"
+           response: 
+             npcText: &shy_q3Roleplay_response
+             - "Haha =) You wanna go out?"
+             npcHP: 0
+             next: WIN
+         - name: "LIE"
+           playerText: &shy_q3Lie 
+             - "I am Keanu Reeves"
+           response: 
+             npcText: &shy_q3Lie_response 
+             - "I don't think Keanu uses Tinder..."
+             npcHP: 0
+             next: LOSE
+         - name: "KEANU"
+           playerText: &shy_q3Keanu
+             - "Man, Keanu is so great."
+           response: &horny_q3Keanu_response 
+             npcText: 
+             - "Yes!! We should watch one of his movies together =)"
+             npcHP: 1
+             next: WIN
+     - tag: q3Unhealthy
+       options:
+         - name: "ASK OUT"  
+           playerText: *shy_askOutIntro
+           response:
+             npcText: *shy_rejectAskOut_q2
+             npcHP: 0
+             next: LOSE
+         - name: "SYMPATHISE"
+           playerText: &shy_q3UnhealthySymp 
+             - "Hey its cool, I'm pretty unhealthy myself"
+           response: 
+             npcText: &shy_q3UnhealthySymp_response 
+             - "oh....gross."
+             npcHP: 0
+             next: LOSE
+         - name: "INSULT" 
+           playerText: &shy_q3UnhealthyInsult 
+             - "Yeah, I mean, I could kinda tell from your photo"
+           response: 
+             npcText: &shy_q3UnhealthyInsult_response 
+             - "...wow..."
+             npcHP: 0
+             next: LOSE
+         - name: "COMPLIMENT"
+           playerText: &shy_q3UnhealthyComp
+             - "Hey, I couldn't tell"
+           response: 
+             npcText: &shy_q3UnhealthyComp_response 
+             - "I can."
+             npcHP: 0
+             next: LOSE
+     - tag: q3Music
+       options:
+         - name: "ASK OUT"  
+           playerText: *shy_askOutIntro 
+           response:
+             npcText: *shy_rejectAskOut_q2
+             npcHP: 0
+             next: LOSE
+         - name: "VOCALS"
+           playerText: &shy_q3MusicVocals 
+             - "The vocals are rad"
+             - "The vocals, definitely"
+           response: 
+             npcText: &shy_q3MusicVocals_response 
+             - "ok...well i gotta go."
+             npcHP: 0
+             next: LOSE
+         - name: "DRUMS" 
+           playerText: &shy_q3MusicDrums 
+             - "The drums are rad"
+             - "The drums, definitely"
+           response: 
+             npcText: *shy_q3MusicVocals_response 
+             npcHP: 0
+             next: LOSE
+         - name: "GUITARS"
+           playerText: &shy_q3MusicGuitars
+             - "The guitars are rad"
+             - "The guitars, definitely"
+           response: 
+             npcText: *shy_q3MusicVocals_response 
+             npcHP: 0
+             next: LOSE
+     - tag: q3MusicGood
+       options:
+         - name: "ASK OUT"  
+           playerText: *shy_askOutIntro 
+           response:
+             npcText: *shy_q3askOut_success
+             npcHP: 0
+             next: WIN
+         - name: "FLIRT"
+           playerText: &shy_q3MusicGoodFlirt 
+             - "I bet you know a lot about other things. Sexy things. ;)"
+           response: 
+             npcText: &shy_q3MusicGoodFlirt_response 
+             - "haha. I do. =)"
+             npcHP: 0
+             next: WIN
+         - name: "SYMPATHISE" 
+           playerText: &shy_q3MusicGoodSymp 
+             - "hey, me neither. But who cares?"
+           response: 
+             npcText: &shy_q3MusicGoodSymp_response
+             - "heh, yeah =)"             
+             npcHP: 0
+             next: WIN
+         - name: "INSULT"
+           playerText: &shy_q3MusicGoodInsult
+             - "Hm, guess you're stupid"
+           response: 
+             npcText: &shy_q3MusicGoodInsult_response
+             - "haha =)" 
+             npcHP: 0
+             next: WIN

@@ -1,3 +1,83 @@
+- spriteName: "fuzz"
+  variants:
+     - colour: pink
+       npcNames: &fuzzNames_pink 
+         - "Bubblegum"
+         - "Strawberry"
+       pType: horny
+       age: 184
+     - colour: blue
+       npcNames: &fuzzNames_blue
+         - "Blueberry"
+       pType: shy
+       age: 382
+     - colour: brown
+       npcNames: &fuzzNames_brown
+         - "Coco"  
+         - "Phillipe"         
+       pType: creepy
+       age: 284
+     - colour: orange
+       npcNames: &fuzzNames_orange
+         - "Orange"
+         - "Clementine"
+         - "Apricot"    
+       pType: creepy
+       age: 188
+     - colour: green
+       npcNames: &fuzzNames_green
+         - "Springtime"
+         - "Flower"    
+       pType: horny
+       age: 205
+     - colour: yellow
+       npcNames: &fuzzNames_yellow
+         - "Lemondrop"  
+       pType: horny
+       age: 120
+     - colour: purple
+       npcNames: &fuzzNames_purple
+         - "GrapeDrink"
+         - "Fizzy"         
+       pType: creepy
+       age: 357
+- spriteName: "bear"
+  variants:
+     - colour: pink
+       npcNames: &bearNames_pink 
+         - "Steve"
+       pType: horny
+       age: 35
+     - colour: blue
+       npcNames: &bearNames_blue
+         - "Jeff"
+       pType: creepy
+       age: 62
+     - colour: brown
+       npcNames: &bearNames_brown
+         - "Chuck"    
+       pType: creepy
+       age: 32
+     - colour: orange
+       npcNames: &bearNames_orange
+         - "Nate"    
+       pType: horny
+       age: 29
+     - colour: green
+       npcNames: &bearNames_green
+         - "Matt"    
+       pType: horny
+       age: 42
+     - colour: yellow
+       npcNames: &bearNames_yellow
+         - "Pat"  
+       pType: horny
+       age: 52
+     - colour: purple
+       npcNames: &bearNames_purple
+         - "Rich"         
+       pType: creepy
+       age: 41
 - spriteName: "horse"
   variants:
      - colour: pink
@@ -11,6 +91,202 @@
        npcNames: &horseNames_blue
          - "Jazz"
          - "Midnight Storm"
-         - "Whiskey"    
+         - "Smokey"    
        pType: horny
        age: 5
+     - colour: brown
+       npcNames: &horseNames_brown
+         - "Peanut"
+         - "Chip"
+         - "Whiskey"    
+       pType: horny
+       age: 12
+     - colour: orange
+       npcNames: &horseNames_orange
+         - "Rocket"
+         - "Dakota"
+         - "Brandy"    
+       pType: horny
+       age: 14
+     - colour: green
+       npcNames: &horseNames_green
+         - "Apple"
+         - "Clover"    
+       pType: horny
+       age: 7
+     - colour: yellow
+       npcNames: &horseNames_yellow
+         - "Chance"
+         - "Bolt"
+         - "Honey"    
+       pType: horny
+       age: 11
+     - colour: purple
+       npcNames: &horseNames_purple
+         - "Misty"
+         - "Spirit"
+         - "Luna"    
+       pType: horny
+       age: 18
+- spriteName: "ogre"
+  variants:
+     - colour: pink
+       npcNames: &ogrewNames_pink 
+         - "Bagamul"
+         - "Zarfu"
+         - "Squagana"
+       pType: shy
+       age: 5
+     - colour: blue
+       npcNames: &ogreNames_blue
+         - "Neghed"
+         - "Oggugat"
+         - "Pomglug"    
+       pType: horny
+       age: 5
+     - colour: brown
+       npcNames: &ogreNames_brown
+         - "Tagdug"
+         - "Kerghug"
+         - "Glush"    
+       pType: shy
+       age: 12
+     - colour: orange
+       npcNames: &ogreNames_orange
+         - "Digdug"
+         - "Umrag"
+         - "Gunaakt"    
+       pType: horny
+       age: 14
+     - colour: green
+       npcNames: &ogreNames_green
+         - "Hanz"
+         - "Nargol"    
+       pType: horny
+       age: 7
+     - colour: yellow
+       npcNames: &ogreNames_yellow
+         - "Mogak"
+         - "Rogmesh"
+         - "Lambug"    
+       pType: creepy
+       age: 11
+     - colour: purple
+       npcNames: &ogreNames_purple
+         - "Snak"
+         - "Bulak"
+         - "Bum"    
+       pType: creepy
+       age: 18
+- spriteName: "vamp"
+  variants:
+     - colour: pink
+       npcNames: &vampNames_pink 
+         - "Edward CallMe"
+       pType: horny
+       age: 1942
+     - colour: blue
+       npcNames: &vampNames_blue
+         - "Angel"
+       pType: shy
+       age: 303
+     - colour: brown
+       npcNames: &vampNames_brown
+         - "Noseferatu"    
+       pType: creepy
+       age: 342
+     - colour: orange
+       npcNames: &vampNames_orange
+         - "Count OrNot"    
+       pType: creepy
+       age: 596
+     - colour: green
+       npcNames: &vampNames_green
+         - "CamLordMilla"    
+       pType: horny
+       age: 824
+     - colour: yellow
+       npcNames: &vampNames_yellow
+         - "Spike"  
+       pType: horny
+       age: 732
+     - colour: purple
+       npcNames: &vampNames_purple
+         - "Lilianal"         
+       pType: creepy
+       age: 1284
+- spriteName: "pig"
+  variants:
+     - colour: pink
+       npcNames: &pigNames_pink 
+         - "Porkinator"
+       pType: horny
+       age: 3
+     - colour: blue
+       npcNames: &pigNames_blue
+         - "Hamlet"
+       pType: creepy
+       age: 2
+     - colour: brown
+       npcNames: &pigNames_brown
+         - "Baconette"
+         - "Baconator"         
+       pType: shy
+       age: 4
+     - colour: orange
+       npcNames: &pigNames_orange
+         - "Taylor Hamm"    
+       pType: horny
+       age: 2
+     - colour: green
+       npcNames: &pigNames_green
+         - "Hamietta"    
+       pType: shy
+       age: 5
+     - colour: yellow
+       npcNames: &pigNames_yellow
+         - "Porkloin"  
+       pType: horny
+       age: 3
+     - colour: purple
+       npcNames: &pigNames_purple
+         - "Loin"         
+       pType: creepy
+       age: 4
+- spriteName: "cowboy"
+  variants:
+     - colour: pink
+       npcNames: &cowboyNames_pink 
+         - "Johnny Rosewater"
+       pType: horny
+       age: 52
+     - colour: blue
+       npcNames: &cowboyNames_blue
+         - "Bad Bitch Betty"
+       pType: horny
+       age: 53
+     - colour: brown
+       npcNames: &cowboyNames_brown
+         - "Wild Bill Hiccup"         
+       pType: shy
+       age: 57
+     - colour: orange
+       npcNames: &cowboyNames_orange
+         - "Pumpkin Joe"    
+       pType: creepy
+       age: 2
+     - colour: green
+       npcNames: &cowboyNames_green
+         - "Lucky"    
+       pType: horny
+       age: 5
+     - colour: yellow
+       npcNames: &cowboyNames_yellow
+         - "Yellow-bellied Jim"  
+       pType: shy
+       age: 3
+     - colour: purple
+       npcNames: &cowboyNames_purple
+         - "Grape Gangster"         
+       pType: creepy
+       age: 4

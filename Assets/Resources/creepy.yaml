@@ -1,0 +1,142 @@
+ - npcName: "creepy"
+#needs HP 0 for successful askOut
+   conversationTree:
+     - tag: start
+       options:
+         - name: "Ask Out"  
+           playerText: &askOutIntro 
+             - "Let's cut to the chase - wanna go out?"
+             - "I don't wanna waste your time - lets meet up."
+             - "Hey, so, how about you and I go out on a date?"
+           response:
+             npcText: &horny_acceptAskOut_intro
+               - "YES"
+             npcHP: 1
+             next: WIN
+             #win state
+         - name: "FLIRT"  
+           playerText: &creepy_flirtIntro
+             - "Hey, you look sexy."
+             - "hey hot stuff ;)"
+             - "You’re on my list of things to do tonight."
+           response:
+             npcText: &creepy_flirtIntroResponse
+             - "THX U 2 DO U LIKE ANAL"
+             npcHP: 1
+             next: q1
+         - name: "COMPLIMENT"
+           playerText: &creepy_compIntro
+             - "Hey, you seem really interesting!"
+             - "I love your smile :)"
+             - "Great photo!"
+             - "You look great!"
+           response:
+             npcText: *creepy_flirtIntroResponse
+             npcHP: 1
+             next: q1
+         - name: "JOKE"
+           playerText: &jokeIntro 
+             - "Titanic...not a good icebreaker?"
+             - "Is there a mirror in your pants? Because I can see myself in them."
+             - "Do you play Quiddich? Because you look like a keeper"
+             - "Hope you like cheezy pickup lines, because if you were a fruit, you’d be a fineapple."
+           response:
+             npcText: &creepy_jokeIntroResponse
+             - "HAHA DO U LIKE ANAL"
+             npcHP: 1
+             next: q1
+     - tag: q1
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro
+           response:
+             npcText: &creepy_denyAskOut_intro
+             - "U DIDNT ANSWER MY ?"
+             npcHP: 1
+             next: q2Anal
+         - name: "GO WITH IT"
+           playerText: &creepy_q1Flirt 
+             - "Absolutely."
+             - "Yes."
+           response:
+             npcText: &horny_q1Flirt_response
+              - "TOYS?" 
+             npcHP: .5
+             next: q2Toys
+         - name: "BE COY"
+           playerText: &horny_q1Dep
+             - "Heh, well, if I'm in a certain mood ;)"
+             - "I haven't tried, but Ill do anything once ;)"
+           response:
+             npcText: *creepy_denyAskOut_intro
+             npcHP: 0
+             next: q2Anal
+         - name: "DENY"
+           playerText: &creepy_q1Deny
+             - "No."
+             - "I uh...I don't"
+             - "can't say that I do..."
+           response: 
+             npcText: &creepy_q1Deny_response 
+             - "OKAY THANK U 4 UR TIME" 
+             npcHP: 1
+             next: LOSE
+     - tag: q2Anal
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro
+           response:
+             npcText: &creepy_denyAskOut_q2Anal
+             - "YA BUT DO U DO ANAL?"
+             npcHP: 0
+             next: q3Anal
+         - name: "GO WITH IT"
+           playerText: *creepy_q1Flirt
+           response:
+             npcText: *horny_q1Flirt_response 
+             npcHP: .5
+             next: q2Toys
+         - name: "BE COY"
+           playerText: &horny_q2AnalCoy
+             - "Maybe with the right person ;)"
+           response:
+             npcText: *creepy_denyAskOut_q2Anal
+             npcHP: 0
+             next: q3Anal
+         - name: "DENY"
+           playerText: *creepy_q1Deny
+           response: 
+             npcText: *creepy_q1Deny_response
+             npcHP: 0
+             next: LOSE
+     - tag: q2Toys
+       options:
+         - name: "ASK OUT"  
+           playerText: *askOutIntro
+           response:
+             npcText: &creepy_accept_q2ToysAsk
+             - "YA OK"
+             npcHP: 1
+             next: WIN
+         - name: "GO WITH IT"
+           playerText: *creepy_q1Flirt
+           response:
+             npcText: &creepy_q2ToysGo_response 
+             npcHP: .5
+             next: WIN
+         - name: "BE COY"
+           playerText: &creepy_q1DepCoy
+             - "hmm well....I could be talked into it..."
+           response:
+             npcText: &creepy_q1DepCoy_response
+             - "SRRY I NEED SOMEONE WHO WILL COMMIT BUT THNK U 4 UR TIME"
+             npcHP: 0
+             next: LOSE
+         - name: "DENY"
+           playerText: &creepy_q2ToysDeny
+             - "Sorry, no toys"
+             - "No, I don't"
+           response: 
+             npcText: *creepy_q1Deny_response
+             npcHP: 0
+             next: LOSE
