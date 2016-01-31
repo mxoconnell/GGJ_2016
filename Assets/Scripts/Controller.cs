@@ -7,13 +7,9 @@ public class Controller : MonoBehaviour {
 
     [SerializeField]
     Model GameModel;
+
     [SerializeField]
     BattleView BattleV;
-
-    public void ChangeToView(IView nextView)
-    {
-
-    }
 
     void Start()
     {
@@ -25,10 +21,26 @@ public class Controller : MonoBehaviour {
         Model.OnBattleFinish += BattleOver;
     }
 
+    public void ChangeToView(IView nextView)
+    {
+
+    }
+
+    #region SwipeScreen
+
     void Swipe(float amount)
     {
 
     }
+
+    NPC GetRandomNPC()
+    {
+        return new NPC();
+    }
+
+
+    #endregion
+    #region BattleScreen
 
     public List<ConversationOption> GetPlayerOptions()
     {
@@ -59,4 +71,5 @@ public class Controller : MonoBehaviour {
     {
       BattleV.OnBattleEnd(endMessage);
     }
+    #endregion
 }
