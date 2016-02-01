@@ -40,7 +40,6 @@ public class SwipeView : MonoBehaviour, IView
 		FillNextPortrait(topCard.GetComponentInChildren<Image>());
 		NpcInfoText.text = NextNpcText;
 		FillNextPortrait(bottomCard.GetComponentInChildren<Image>());
-
     }
     public void ChangeView(IView nextView)
     {
