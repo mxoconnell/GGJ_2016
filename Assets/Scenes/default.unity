@@ -170,6 +170,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 11415516, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
+      propertyPath: GameController
+      value: 
+      objectReference: {fileID: 1549683344}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
   m_IsPrefabParent: 0
