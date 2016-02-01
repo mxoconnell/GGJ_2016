@@ -10,7 +10,8 @@
              - "Hey, so, how about you and I go out on a date?"
            response:
              npcText: &horny_denyAskOut_intro
-               - "Hmm... I think I'm a little out of your league, sorry (playerName)"
+               - "Hmm... I think I'm a little out of your league, sorry ;)"
+               - "I'm good, sorry ;)"
              npcHP: 1
              next: LOSE
              #lose state
@@ -22,7 +23,7 @@
              - "You’re on my list of things to do tonight."
            response:
              npcText: &horny_flirtIntroResponse
-             - "I love compliments ;) What do you do for fun, (playerName)?"
+             - "I love compliments ;) What do you do for fun, ;)?"
              npcHP: 1
              next: q1
          - name: "COMPLIMENT"
@@ -43,8 +44,8 @@
              - "Hope you like cheezy pickup lines, because if you were a fruit, you’d be a fineapple."
            response:
              npcText: &horny_jokeIntroResponse
-             - "Hehe...I love jokes. What do you do for fun, (playerName) ?"
-             - "A comedian ;)... What do you do for fun, (playerName) ?"
+             - "Hehe...I love jokes. What do you do for fun?"
+             - "A comedian ;)... What do you do for fun?"
              npcHP: 1
              next: q1
      - tag: q1
