@@ -123,6 +123,12 @@ public class BattleView : MonoBehaviour
     public void OnBattlePanelClosed()
     {
         PlayerOptionVisibility(true);
+
+        foreach(Transform child in MessageWindow.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        FinishDialogBox.SetActive(false);
         //initialize
     }
 }
