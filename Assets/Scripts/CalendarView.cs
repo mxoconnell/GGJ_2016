@@ -9,11 +9,16 @@ public class CalendarView : MonoBehaviour
 {
     public GameObject popupMidGame;
     public GameObject popupEndGame;
+
+    public GameObject SwipeScreen;
+    public GameObject CalendarScreen;
+
     public Sprite dateOccupied;
     public GameObject[] days;
     bool[] daysFilled = { true, false, false, false, false, false, false };//true if that day is filled
     [SerializeField]
     Image[] CalendarBookedGraphics;
+    bool canPick = true;
 
     // Use this for initialization
     void Start() {
@@ -38,7 +43,7 @@ public class CalendarView : MonoBehaviour
         }
 
         //All dates filled
-        if(numberOfDates == daysFilled.Length - 1)
+        if(numberOfDates == daysFilled.Length)
         {
             popupMidGame.SetActive(false);
             popupEndGame.SetActive(true);
@@ -47,8 +52,31 @@ public class CalendarView : MonoBehaviour
 
     public void AddANewDate(int day)
     {
-        daysFilled[day] = true;
-        popupMidGame.SetActive(false);
-        DisplayBookedDays();
+        if (canPick){
+            canPick = false;
+            daysFilled[day] = true;
+            popupMidGame.SetActive(true);
+            DisplayBookedDays();
+        }
+        
     }
+
+    public void returnToGame(GameObject popup)
+    {
+        popup.SetActive(false);
+        StartCoroutine(waitABitThenReturn());
+        
+    }
+
+    IEnumerator waitABitThenReturn()
+    {
+        print(Time.time);
+        yield return new WaitForSeconds(1);
+        print(Time.time);
+        canPick = true;
+
+        CalendarScreen.SetActive(false);
+        SwipeScreen.SetActive(true);
+    }
+
 }
