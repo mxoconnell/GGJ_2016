@@ -24,6 +24,9 @@ public class Model : MonoBehaviour {
 
     public static System.Action<string> OnBattleFinish;
 
+    [SerializeField]
+    string[] ArchetypeNames;
+
     // Use this for initialization
     void Awake()
     { 
@@ -40,9 +43,13 @@ public class Model : MonoBehaviour {
 
     #region BattleScreen
 
-    public List<ConversationOption> GetPlayerOptions () { 
-        //TODO Move this line up to Awake?  
-        if(DialogNPCs.Count==0) DialogNPCs = CamelCaseDeserializer.Deserialize<List<NpcData>>(Reader);
+    public List<ConversationOption> GetPlayerOptions () {
+
+        string fileString = ArchetypeNames[UnityEngine.Random.Range(0, ArchetypeNames.Length)];
+
+        Reader = new StringReader(Resources.Load<TextAsset>(fileString).text);
+
+        if (DialogNPCs.Count==0) DialogNPCs = CamelCaseDeserializer.Deserialize<List<NpcData>>(Reader);
 
         return DialogNPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options;
     }
@@ -64,7 +71,6 @@ public class Model : MonoBehaviour {
         Response r = DialogNPCs[CurrentNPC].ConversationTree[CurrentConversationNodeIndex].Options[ConversationOptionIndex].Response;
 
         //set the next node!
-
         CurrentConversationNodeIndex = GetConversationTreeIndexforTag(r.Next);
 
         return r.NpcText[Random.Range(0, r.NpcText.Count)];

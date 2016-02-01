@@ -70,6 +70,8 @@ public class SwipeView : MonoBehaviour, IView
     [SerializeField]
     float SliderThreshold;
 
+    [SerializeField]
+    GameObject BattleViewGO;
 
     public static System.Action<float> DidSwipe;
 
@@ -129,10 +131,18 @@ public class SwipeView : MonoBehaviour, IView
         if (canSwipe)
         {
             if (isRight)
+            {
                 dx *= -1;
 
-            //Debug.Log("Swiped!");
+               
 
+            }
+            else
+            {
+                Debug.Log("Swiped right!");
+                BattleViewGO.SetActive(true);
+                gameObject.SetActive(false);
+            }
             dy = UnityEngine.Random.Range(-dy, dy);
             canSwipe = false;
 
