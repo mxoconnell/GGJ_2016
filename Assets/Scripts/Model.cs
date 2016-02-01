@@ -22,7 +22,7 @@ public class Model : MonoBehaviour {
     const string WinTag = "WIN";
     const string LoseTag = "LOSE";
 
-    public static System.Action<string> OnBattleFinish;
+    public static System.Action<bool> OnBattleFinish;
 
     [SerializeField]
     string[] ArchetypeNames;
@@ -98,15 +98,9 @@ public class Model : MonoBehaviour {
 
     void EndBattle(bool didWin)
     {
-        string finishText = "Grats! You won! Click to go to the calendar and schedule your date.";
 
-        if (didWin == false)
-        {
-            finishText = "Too bad. Better luck next time!";
-            //change button text
-        }
+            OnBattleFinish(didWin);
 
-        OnBattleFinish(finishText);
     }
 
     #endregion

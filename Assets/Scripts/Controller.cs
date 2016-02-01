@@ -67,9 +67,9 @@ public class Controller : MonoBehaviour {
 
     }
 
-    public void BattleOver(string endMessage)
+    public void BattleOver(bool didWin)
     {
-      BattleV.OnBattleEnd(endMessage);
+      BattleV.OnBattleEnd(didWin);
     }
     #endregion
 }

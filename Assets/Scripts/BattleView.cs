@@ -33,6 +33,11 @@ public class BattleView : MonoBehaviour
     [SerializeField]
     Text FinishDialog;
 
+    int LastBattleWon = 0;
+
+    [SerializeField]
+    GameObject[] FinishDialogBoxButtons;
+
 	private float MessageBoxTranslation = 0;
 
     // Use this for initialization
@@ -113,11 +118,23 @@ public class BattleView : MonoBehaviour
         }
     }
 
-    public void OnBattleEnd(string finishText)
+    public void OnBattleEnd(bool didWin)
     {
-        FinishDialog.text = finishText;
         PlayerOptionVisibility(false);
         FinishDialogBox.SetActive(true);
+
+        if (didWin)
+        {
+            FinishDialog.text = "Grats! You won! Click to go to the calendar and schedule your date.";
+            FinishDialogBoxButtons[0].SetActive(true);
+        }
+        else
+        {
+            FinishDialog.text = "And they were never heard from again.";
+            FinishDialogBoxButtons[1].SetActive(true);
+        }
+
+        
     }
 
     public void OnBattlePanelClosed()
@@ -129,6 +146,8 @@ public class BattleView : MonoBehaviour
             Destroy(child.gameObject);
         }
         FinishDialogBox.SetActive(false);
+        FinishDialogBoxButtons[0].SetActive(false);
+        FinishDialogBoxButtons[1].SetActive(false);
         //initialize
     }
 }
