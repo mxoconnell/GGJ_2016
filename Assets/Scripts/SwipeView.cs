@@ -31,7 +31,7 @@ public class SwipeView : MonoBehaviour, IView
     void Start()
     {
         topCardOriginalPosition = topCard.transform.position;
-		SpriteData = GameController.GetNpcSprites();
+		//SpriteData = GameController.GetNpcSprites();
     }
     public void ChangeView(IView nextView)
     {
