@@ -250,6 +250,26 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 22491046, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22491046, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -149
+      objectReference: {fileID: 0}
+    - target: {fileID: 22420188, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22420188, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -81
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438856, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df6dcf7673bd5344b8777959538f27d8, type: 2}
   m_IsPrefabParent: 0
