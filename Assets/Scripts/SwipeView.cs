@@ -12,12 +12,14 @@ public class SwipeView : MonoBehaviour, IView
     public GameObject topCard;
     public GameObject bottomCard;
 
+	[SerializeField]
+	ColorOptions colorOptions;
+
     [SerializeField]
     Image PortraitA, PortraitB;
+
     [SerializeField]
-    Text NPCNameA, NPCNameB;
-    [SerializeField]
-    Text NPCAgeA, NPCAgeB;
+	Text NpcInfoText;
 
     Vector3 topCardOriginalPosition;
     bool canSwipe = true; //false when we are swiping
@@ -28,10 +30,16 @@ public class SwipeView : MonoBehaviour, IView
 
 	IList<NpcSprite> SpriteData;
 
+	private string NextNpcText;
+
     void Start()
     {
         topCardOriginalPosition = topCard.transform.position;
-		//SpriteData = GameController.GetNpcSprites();
+		SpriteData = GameController.GetNpcSprites();
+
+		FillNextPortrait(topCard.GetComponentInChildren<Image>());
+		NpcInfoText.text = NextNpcText;
+		FillNextPortrait(bottomCard.GetComponentInChildren<Image>());
     }
     public void ChangeView(IView nextView)
     {
@@ -109,7 +117,9 @@ public class SwipeView : MonoBehaviour, IView
                 var placeholder = topCard;
                 topCard = bottomCard;
                 bottomCard = placeholder;
-                FillNextPortrait();
+
+				NpcInfoText.text = NextNpcText;
+				FillNextPortrait(bottomCard.GetComponentInChildren<Image>());
             }
         }
     }
@@ -132,19 +142,62 @@ public class SwipeView : MonoBehaviour, IView
 
     //Load in NPC Data
 
-    public void FillNextPortrait()
+	public void FillNextPortrait(Image portrait)
     {
-		NPC npc = bottomCard.GetComponentInChildren<Image>().gameObject.AddComponent<NPC>();
-       // bottomCard.GetComponentInChildren<NPC>().InitializeNewNPC();
-		NpcSprite sprite = SpriteData[UnityEngine.Random.Range(0, SpriteData.Count)];
-		NpcSpriteVariant variant = sprite.Variants[UnityEngine.Random.Range(0, sprite.Variants.Count)];
+		NPC npc = GenerateNPC();
+
+		// Fill in the back sprite and set the backup age
+		NextNpcText = npc.Name + ", " + npc.Age;
+		portrait.sprite = npc.Sprite;
+		portrait.color = colorOptions.ForOption(npc.Colour);
+
+    }
+
+	public NPC GenerateNPC()
+	{
+		NpcSprite spriteData = SpriteData[UnityEngine.Random.Range(0, SpriteData.Count)];
+		NpcSpriteVariant variant = spriteData.Variants[UnityEngine.Random.Range(0, spriteData.Variants.Count)];
+
 		string name = variant.NpcNames[UnityEngine.Random.Range(0, variant.NpcNames.Count)];
 		int age = variant.Age;
+		Sprite sprite = Resources.Load<Sprite>("sprites/" + spriteData.SpriteName);
+		string colour = variant.Colour;
 
-		npc.NPCName = name;
-		npc.Age = age;
+		return new NPC
+		{
+			Name = name,
+			Age = age,
+			Sprite = sprite,
+			Colour = colour
+		};
+	}
 
-		// TODO Set the sprite images
-		// TODO update the logo image based on the sprite
-    }
+	
+}
+
+[Serializable]
+public class ColorOptions
+{
+	public Color brown;
+	public Color orange;
+	public Color blue;
+	public Color green;
+	public Color pink;
+	public Color yellow;
+	public Color purple;
+
+	public Color ForOption(string option)
+	{
+		switch(option)
+		{
+		case "brown": return brown;
+		case "orange": return orange;
+		case "blue": return blue;
+		case "green": return green;
+		case "pink": return pink;
+		case "yellow": return yellow;
+		case "purple": return purple;
+		default: return Color.white;
+		}
+	}
 }

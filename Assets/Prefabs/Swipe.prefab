@@ -359,12 +359,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topCard: {fileID: 176806}
   bottomCard: {fileID: 146588}
-  PortraitA: {fileID: 0}
-  PortraitB: {fileID: 0}
-  NPCNameA: {fileID: 0}
-  NPCNameB: {fileID: 0}
-  NPCAgeA: {fileID: 0}
-  NPCAgeB: {fileID: 0}
+  colorOptions:
+    brown: {r: 0.78823537, g: 0.53333336, b: 0.36862746, a: 1}
+    orange: {r: 0.9725491, g: 0.5647059, b: 0.2509804, a: 1}
+    blue: {r: 0.53333336, g: 0.75294125, b: 0.81568635, a: 1}
+    green: {r: 0.7843138, g: 0.909804, b: 0.37647063, a: 1}
+    pink: {r: 0.9725491, g: 0.65882355, b: 0.75294125, a: 1}
+    yellow: {r: 0.9725491, g: 0.909804, b: 0.28235295, a: 1}
+    purple: {r: 0.87843144, g: 0.6901961, b: 0.87843144, a: 1}
+  PortraitA: {fileID: 11485798}
+  PortraitB: {fileID: 11416450}
+  NpcInfoText: {fileID: 11438856}
   GameController: {fileID: 0}
   Root: {fileID: 22412876}
   SwipeScreens:
